@@ -1,0 +1,29 @@
+Similarity Limit: 0.52 Reverse Similarity Limit:-0.52 NO3_Reverse Similarity Limit:-0.52
+
+1a.Total Users: 943 Total Movies:1682 Ratings: 100943
+1b.Density: 0.0636412239632917
+
+2a.Users with Near Neighbours: 943
+2b.Predicted Ratings: 815 Coverage:0.8642629904559915
+2c.NN MAE Sum: 355.0 MAE CF:0.43558282208588955
+
+3a.Users with Far Neighbours: 941
+3b.Reverse Predicted Ratings: 588 Coverage:0.623541887592789
+3c.FN MAE Sum: 296.0 Rev MAE CF:0.5034013605442177
+3d.Total Predicted Ratings with FN: 831 Coverage:0.8812301166489925
+3e.Total MAE Sum: 364.0 Total MAE CF:0.4380264741275572
+3f.Ratings from NN: 815 Rating from FN:16
+
+4a.Users with NO3 Far Neighbours: 943
+4b.Reverse NO3 Predicted Ratings: 673 Coverage:0.7136797454931071
+4c.NO3 FN MAE Sum: 494.0 NO3 Rev MAE CF:0.7340267459138187
+4d.Total NO3 MAE Sum: 383.0 Total MAE CF:0.4297520661157025
+4e.Total Predicted Ratings with NO3 FN: 847 Coverage:0.8981972428419936
+4f.Ratings from NO3 FN:32
+
+Max Similarity Value: 1.0000000000000002 Min Similarity Value:-1.0000000000000002
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5180
+Calculate time to find Similarities (Fill in US, User_Similarities tables): -12300
+Calculate time to make Predictions (Fill in User table with Predction plus calculate MAE): 0
+

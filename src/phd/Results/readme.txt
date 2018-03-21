@@ -1,0 +1,1 @@
+All_Data: Simple Calculation, plus weighted, including ALL DATA

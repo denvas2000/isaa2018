@@ -1,0 +1,432 @@
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2855
+Calculate time to find Similarities (FN): -3307
+Sort Similarity arrays for all users: -265
+Calculate time to make Predictions (NN): -31
+Calculate time to make Predictions (FN): -16
+Calculate time to make Predictions Combined: -15
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -3137
+Calculate time to find Similarities (FN): -3619
+Sort Similarity arrays for all users: -125
+Calculate time to make Predictions (NN): -16
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2699
+Calculate time to find Similarities (FN): -2371
+Sort Similarity arrays for all users: -109
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2434
+Calculate time to find Similarities (FN): -2340
+Sort Similarity arrays for all users: -94
+Calculate time to make Predictions (NN): -16
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2579
+Calculate time to find Similarities (FN): -2336
+Sort Similarity arrays for all users: -94
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2574
+Calculate time to find Similarities (FN): -2340
+Sort Similarity arrays for all users: -109
+Calculate time to make Predictions (NN): -16
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2387
+Calculate time to find Similarities (FN): -2386
+Sort Similarity arrays for all users: -156
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: -16
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2465
+Calculate time to find Similarities (FN): -2480
+Sort Similarity arrays for all users: -31
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2449
+Calculate time to find Similarities (FN): -2355
+Sort Similarity arrays for all users: -16
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2387
+Calculate time to find Similarities (FN): -2340
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2403
+Calculate time to find Similarities (FN): -2340
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2434
+Calculate time to find Similarities (FN): -2434
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2372
+Calculate time to find Similarities (FN): -2418
+Sort Similarity arrays for all users: -156
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: -15
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2371
+Calculate time to find Similarities (FN): -2387
+Sort Similarity arrays for all users: -15
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): -16
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2402
+Calculate time to find Similarities (FN): -3245
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2590
+Calculate time to find Similarities (FN): -2449
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2372
+Calculate time to find Similarities (FN): -2340
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2372
+Calculate time to find Similarities (FN): -2340
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2371
+Calculate time to find Similarities (FN): -2527
+Sort Similarity arrays for all users: -141
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: -16
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2371
+Calculate time to find Similarities (FN): -2371
+Sort Similarity arrays for all users: -16
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: -15
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2387
+Calculate time to find Similarities (FN): -2325
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2355
+Calculate time to find Similarities (FN): -2340
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2356
+Calculate time to find Similarities (FN): -2324
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2355
+Calculate time to find Similarities (FN): -2325
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2355
+Calculate time to find Similarities (FN): -2481
+Sort Similarity arrays for all users: -141
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: -15
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2465
+Calculate time to find Similarities (FN): -2356
+Sort Similarity arrays for all users: -16
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2356
+Calculate time to find Similarities (FN): -2324
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2355
+Calculate time to find Similarities (FN): -2325
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2371
+Calculate time to find Similarities (FN): -2418
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2355
+Calculate time to find Similarities (FN): -2325
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2684
+Calculate time to find Similarities (FN): -2464
+Sort Similarity arrays for all users: -140
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2340
+Calculate time to find Similarities (FN): -2340
+Sort Similarity arrays for all users: -16
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2386
+Calculate time to find Similarities (FN): -2621
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2403
+Calculate time to find Similarities (FN): -2996
+Sort Similarity arrays for all users: -15
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -3027
+Calculate time to find Similarities (FN): -2480
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5257
+Calculate time to find Similarities (NN): -2543
+Calculate time to find Similarities (FN): -2402
+Sort Similarity arrays for all users: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions Combined: 0
+********************************************************
+********************************************************
+
