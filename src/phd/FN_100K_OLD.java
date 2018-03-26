@@ -60,6 +60,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import static phd.Global_Vars.users;
 
 
 /**
@@ -207,6 +210,8 @@ int RevMode=0;
 int aa=0; 
 int[] totals = new int[2];
 
+ExecutorService es = Executors.newFixedThreadPool(2);
+
 // PART A. INITIALISATION 
 //
 // -------- Start reading data file. All data are in memory (Tables) ----------- 
@@ -273,7 +278,11 @@ try(FileWriter outExcel = new FileWriter( "results_MovieLens100K_Old.txt" )) {
 
             TotalPredictedValues=0;NO3TotalPredictedValues=0;            
             NO3TotalMAE=0.0;TotalMAE=0.0;                                    
-            
+
+            startTime=System.currentTimeMillis();           //Set new timer
+            Similarities.Positive_Similarity(totalUsers, totalMovies, US, users, userMovies, (double)l/100, n); 
+            simTime1=startTime-System.currentTimeMillis();                
+
             startTime=System.currentTimeMillis();           //Set new timer
             Similarities.Positive_Similarity(totalUsers, totalMovies, US, users, userMovies, (double)l/100, n); 
             simTime1=startTime-System.currentTimeMillis();
