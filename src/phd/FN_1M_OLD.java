@@ -159,7 +159,7 @@ System.out.println("totalUsers:"+totalUsers);
 //            CALCULATE SIMPLE COLLABORATIVE FILTERING SIMILARITIES FOR BOTH NNs and KNs
 
         
-try(FileWriter outExcel = new FileWriter( "results_100k_new.txt" )) {
+try(FileWriter outExcel = new FileWriter( "results_1M_OLD.txt" )) {
 
     //Export File HEADINGS
     
@@ -287,8 +287,8 @@ try(FileWriter outExcel = new FileWriter( "results_100k_new.txt" )) {
             out.write("\r\n");
             out.write("Calculate time to find Similarities (FN): "+Long.toString(simTime2));
             out.write("\r\n");
-            //out.write("Calculate time to find Similarities (NO3 FN): "+Long.toString(simTime3));
-            //out.write("\r\n");
+            out.write("Calculate time to find Similarities (Denis FN): "+Long.toString(simTime3));
+            out.write("\r\n");
             out.write("Sort Similarity arrays for all users: "+Long.toString(sortTime));
             out.write("\r\n");
             out.write("Calculate time to make Predictions (NN): "+predTime1);
@@ -298,6 +298,8 @@ try(FileWriter outExcel = new FileWriter( "results_100k_new.txt" )) {
             //out.write("Calculate time to make Predictions (NO3 FN): "+predTime3);
             //out.write("\r\n");
             out.write("Calculate time to make Predictions Combined: "+predTime4);
+            out.write("\r\n");
+            out.write("Calculate time to make Predictions Combined Dennis: "+predTime5);
             out.write("\r\n");
             out.write("********************************************************\r\n");
             out.write("********************************************************\r\n");            
