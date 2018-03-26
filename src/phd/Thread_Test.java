@@ -10,7 +10,7 @@ package phd;
  *
  * @author Administrator
  */
-public class Thread_Test implements Runnable {
+/*public class Thread_Test implements Runnable {
 
     public void run() {
         for (int i=0;i<10;i++)
@@ -26,4 +26,25 @@ public class Thread_Test implements Runnable {
         den_thr3.start();
     }
 
+}
+*/
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Thread_Test {
+    public static void main(String[] args) {
+        System.out.println("Inside : " + Thread.currentThread().getName());
+
+        System.out.println("Creating Executor Service...");
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+        System.out.println("Creating a Runnable...");
+        Runnable runnable = () -> {
+            System.out.println("Inside : " + Thread.currentThread().getName());
+        };
+
+        System.out.println("Submit the task specified by the runnable to the executor service.");
+        executorService.submit(runnable);
+    }
 }
