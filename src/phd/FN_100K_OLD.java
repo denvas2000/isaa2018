@@ -315,14 +315,15 @@ try(FileWriter outExcel = new FileWriter( "results_MovieLens100K_Old.txt" )) {
             //Similarities.Print_Similarities(totalUsers, US);
             
             sortTime=startTime-System.currentTimeMillis();
-
+            
+            startTime=System.currentTimeMillis();
             //Keep only Neighbors that have rate LastMovieID
             Phd_Utils.Strict_Similarities(totalUsers, US, users, userMovies);
             Phd_Utils.Strict_Similarities(totalUsers, RUS, users, userMovies);
             Phd_Utils.Strict_Similarities(totalUsers, NO3RUS, users, userMovies);
             Phd_Utils.Strict_Similarities(totalUsers, INVUS, users, userMovies);     
-            
             strictTime=startTime-System.currentTimeMillis();
+
             //System.out.println("ccc");
             //Similarities.Print_Similarities(totalUsers, INVUS);
             //Similarities.Print_Similarities(totalUsers, US);
