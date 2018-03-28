@@ -230,7 +230,7 @@ int bestNeigh)              //Select just the "bestNeigh" (absolute number of mo
 
 int i, k, l;    
 int combinedNeighbors=0;
-List<UserSimilarity>[] combinedSim = new List[Global_Vars.MAX_USERS];    //Array of list holding for each user the FN
+List<UserSimilarity>[] combinedSim = new List[FN_100K_OLD.MAX_USERS];    //Array of list holding for each user the FN
 List<UserSimilarity> posList = new ArrayList<>();
 List<UserSimilarity> negList = new ArrayList<>();
 List<UserSimilarity> combinedList;

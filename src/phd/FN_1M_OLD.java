@@ -67,6 +67,13 @@ import java.util.Iterator;
  */
 public class FN_1M_OLD extends Global_Vars{
         
+//Movielens 1M_Old
+static final int MAX_USERS=6040;        //Maximum Users the program can handle
+static final int MAX_MOVIES=3955;       //Maximum Movies the program can handle
+static final int TOTAL_RATINGS=1000209;
+
+static User[] users = new User[MAX_USERS];        
+static UserMovie[][] userMovies = new UserMovie[MAX_USERS][MAX_MOVIES];  //Store User Ratings
 
 public static void Assign_Values(double[] values, int choice) {
 
@@ -255,7 +262,7 @@ try(FileWriter outExcel = new FileWriter( "results_1M_OLD.txt" )) {
             predTime2=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings         
 
             startTime=System.currentTimeMillis();                    //New Timer
-            Assign_Values(Predictions.Compute_Prediction(totalUsers, totalMovies, NO3RUS, users, userMovies, 2, p),3);                 
+    //        Assign_Values(Predictions.Compute_Prediction(totalUsers, totalMovies, NO3RUS, users, userMovies, 2, p),3);                 
             predTime3=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings         
 
             startTime=System.currentTimeMillis();                    //New Timer
@@ -303,8 +310,8 @@ try(FileWriter outExcel = new FileWriter( "results_1M_OLD.txt" )) {
             out.write("\r\n");
             out.write("Calculate time to make Predictions (FN): "+predTime2);
             out.write("\r\n");
-            out.write("Calculate time to make Predictions (NO3 FN): "+predTime3);
-            out.write("\r\n");
+    //        out.write("Calculate time to make Predictions (NO3 FN): "+predTime3);
+    //        out.write("\r\n");
             out.write("Calculate time to make Predictions (FN Dennis): "+predTime4);
             out.write("\r\n");
             out.write("Calculate time to make Predictions (Combined NN - FN Dennis): "+predTime5);

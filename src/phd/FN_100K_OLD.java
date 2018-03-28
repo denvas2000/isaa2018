@@ -62,7 +62,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import static phd.Global_Vars.users;
+
 
 
 /**
@@ -71,11 +71,12 @@ import static phd.Global_Vars.users;
  */
 public class FN_100K_OLD extends Global_Vars{
         
-/*
+
 static final int MAX_USERS=950;        //Maximum Users the program can handle
 static final int MAX_MOVIES=1690;      //Maximum Movies the program can handle
 static final int TOTAL_RATINGS=100001;
 
+/*
 static final int NO_PREDICTION=-10;    //"Prediction value" for items that cannot be predicted
 static final int MAX_RATING=5;
 
@@ -129,9 +130,11 @@ static final int NEG_WEIGHT_TYPE=0; ////There are the following types of weights
 //Flag to Keep Only Neighbors that have rated last movie ID. Obsolete after Ver1.3 - Code Fixed. HAS TO BE DELETED IN NEXT VESRION.
 static final int STRICT_SIMILARITY=1; //1=Only similar neighbors that rated last movie 
                                       //0-All similar neighbors
-
+*/
 static User[] users = new User[MAX_USERS];        
 static UserMovie[][] userMovies = new UserMovie[MAX_USERS][MAX_MOVIES];  //Store User Ratings
+
+/*
 static public int simNeighbors=0, revSimNeighbors=0, NO3RevSimNeighbors=0,
                   negAverSimNeighbors;       //The Number of user having similar/reverse similar users                
 static int positivePredictions, revPredictedValues, NO3RevPredictedValues,
@@ -223,7 +226,7 @@ ExecutorService es = Executors.newFixedThreadPool(2);
 
 firstTime=System.currentTimeMillis();
 startTime=System.currentTimeMillis();
-totals=Initialization.Data_Initialisation_100K_OLD("Movielens_100K_OLD_Sorted.txt", users, userMovies, absMinTimeStamp, absMaxTimeStamp);
+totals=Initialization.Data_Initialisation_100K_OLD("Movielens_100K_Old_Sorted.txt", users, userMovies, absMinTimeStamp, absMaxTimeStamp);
 initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
 totalUsers=totals[0];totalMovies=totals[1];
 Initialization.Compute_Inverse_Data(totalUsers, totalMovies, users, userMovies);
