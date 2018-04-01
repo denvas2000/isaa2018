@@ -126,5 +126,5 @@ public double UserInvertedAverageRating () {
     return (double)invRatingSum/(double)ratingNum;
     
 }
-} //end UserSimilarity class definition
+} //end User class definition
  

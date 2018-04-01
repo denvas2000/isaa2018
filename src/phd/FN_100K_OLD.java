@@ -405,7 +405,7 @@ try(FileWriter outExcel = new FileWriter( "results_MovieLens100K_Old.txt" )) {
         }    
             out.close();     //Close output file
             
-        } //try    //try   
+        } //try  
         catch (IOException iox) {
             //do stuff with exception
             iox.printStackTrace();
