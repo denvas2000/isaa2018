@@ -457,16 +457,15 @@ int NO3_RatingsSum=0;  //The sum of all UserID ratings, excluding 3-ratings
 
 //The user we deal with
 //In 1M_Old first user has userID=1
-int Running_User=1;             
-int Previous_User=1;        
+int Running_User=0;             
+int Previous_User=0;        
+int Last_Movie=0;             //The Movie ID the UserID last, concerning time, rated
 
 int User_Ratings_Sum=0;       //Sum of all rating values of a single UseiID
 int Min_Time = 0;             //Min time stamp of a UseiID
 int Max_Time = 0;             //Max time stamp of a UseiID
 int maxRating=1;
 int minRating=5;
-int Last_Movie=0;             //The Movie ID the UserID last, concerning time, rated
-
 
 int totalUsers=0;
 int totalMovies=0;
@@ -511,7 +510,7 @@ try {   //Read Files. Initiate tables
             if (Running_User!=Previous_User)        //Create user after all calculations are over
             {
                 //Initialize new user
-                users[Previous_User-1]= new User(Previous_User-1, Last_Movie-1, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
+                users[Previous_User]= new User(Previous_User, Last_Movie, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
                                           Min_Time, Max_Time, minRating, maxRating);
                 RatingsNum=0;
              
@@ -571,7 +570,7 @@ try {   //Read Files. Initiate tables
                 
                 //Create the main Users*Movies Table. Each cell holds the rating of a user to a
                 //specific movie.
-                userMovies[Running_User-1][MovieID-1]=new UserMovie(Running_User-1,MovieID-1,UserRating, RatingTimeStamp,0);
+                userMovies[Running_User][MovieID]=new UserMovie(Running_User-1,MovieID-1,UserRating, RatingTimeStamp,0);
 
             }//else if
             
@@ -580,7 +579,7 @@ try {   //Read Files. Initiate tables
         if (Running_User!=1)        //Handle (Create) last user 
         {
             //Initialize new user
-            users[Running_User-1]= new User(Running_User-1, Last_Movie-1, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
+            users[Running_User]= new User(Running_User, Last_Movie, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
                                           Min_Time, Max_Time, minRating, maxRating);
         } 
         

@@ -68,9 +68,9 @@ import java.util.Iterator;
 public class FN_Amazon_Video_Games extends Global_Vars{
         
 //Movielens 1M_Old
-static final int MAX_USERS=8200;         //Maximum Users the program can handle
-static final int MAX_MOVIES=21000;       //Maximum Movies the program can handle
-static final int TOTAL_RATINGS=170000;
+static final int MAX_USERS=8500;         //Maximum Users the program can handle
+static final int MAX_MOVIES=27000;       //Maximum Movies the program can handle
+static final int TOTAL_RATINGS=160000;
 
 static User[] users = new User[MAX_USERS];        
 static UserMovie[][] userMovies = new UserMovie[MAX_USERS][MAX_MOVIES];  //Store User Ratings

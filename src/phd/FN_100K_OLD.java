@@ -226,7 +226,7 @@ ExecutorService es = Executors.newFixedThreadPool(2);
 
 firstTime=System.currentTimeMillis();
 startTime=System.currentTimeMillis();
-totals=Initialization.Data_Initialisation_100K_OLD("Movielens_100K_Old_Sorted.txt", users, userMovies, absMinTimeStamp, absMaxTimeStamp);
+totals=Initialization.Data_Initialisation_100K_OLD("Movielens_100K_OLD_Sorted.txt", users, userMovies, absMinTimeStamp, absMaxTimeStamp);
 initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
 totalUsers=totals[0];totalMovies=totals[1];
 Initialization.Compute_Inverse_Data(totalUsers, totalMovies, users, userMovies);
