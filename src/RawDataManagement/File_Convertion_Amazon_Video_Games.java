@@ -22,7 +22,7 @@ public class File_Convertion_Amazon_Video_Games {
 
 public static final int MIN_RATINGS_PER_USER =2;
 public static Ratings ratings[]= new Ratings[1325000];    
-public static SimpleUser simpleUsers[] = new SimpleUser[830000];
+public static SimpleUser simpleUsers[] = new SimpleUser[860000];
 
 public static void Print_Users (SimpleUser[] simpleUsers, int users)
 {
@@ -122,8 +122,8 @@ String prevUser="";
 
         } // while (Line)
 
-        simpleUsers[Running_User] = new SimpleUser(Running_User, RatingsNum);
-        ratings[currLine] = new Ratings(Running_User, Nums_Line[1], Nums_Line[2], Nums_Line[3]); //Handle (Create) last user 
+        simpleUsers[Running_User] = new SimpleUser(Running_User, RatingsNum);//Handle (Create) last user 
+        //ratings[currLine] = new Ratings(Running_User, Nums_Line[1], Nums_Line[2], Nums_Line[3]);  
 
 
     } // try 
@@ -151,11 +151,12 @@ int RatingsNum = 0;      //The number of UserID ratings
 
 //Vars for the data manipulation
 
+int maxuserID=-1;
 int Running_Movie = 0;
 int currLine = 0;
 String currMovie="";
 String prevMovie="";
-
+int userid=-1;
 
     
     try {   //Read Files. Initiate tables
@@ -178,15 +179,16 @@ String prevMovie="";
             Scan_Line = new Scanner(Line);              //Read Line from text file
 
             // Read the numbers in line, store them in Nums_Line, max numbers 4 (or the rest are ignored)
-            while ((Scan_Line.hasNext()) && (Nums_Per_Line_Count < 4)) {
-                Nums_Line[Nums_Per_Line_Count++] = Scan_Line.next(); 
-            }
-            
-            
+            //while ((Scan_Line.hasNext()) && (Nums_Per_Line_Count < 4)) {
+            //    Nums_Line[Nums_Per_Line_Count++] = Scan_Line.next(); 
+            //}
+            userid=Scan_Line.nextInt();
+            Nums_Line[1] = Scan_Line.next();
+            Nums_Line[2] = Scan_Line.next();
+            Nums_Line[3] = Scan_Line.next();
             Scan_Line.close();
+
             currMovie=Nums_Line[1];
-            
-            
             
             /* -----        FINISH: READ A SINGLE LINE            ----- */
             /* ------ START: STORE NUMBERS IN THE RIGHT TABLES -------- */
@@ -197,17 +199,17 @@ String prevMovie="";
             }
             
             
-            ratings[currLine] = new Ratings(Integer.parseInt(Nums_Line[0]), String.valueOf(Running_Movie), Nums_Line[2], Nums_Line[3]);
+            ratings[currLine] = new Ratings(userid, String.valueOf(Running_Movie), Nums_Line[2], Nums_Line[3]);
 
             //They HAVE TO BE AT THE END OF WHILE LOOP
             prevMovie=currMovie;
             currLine++;
-
+            if (maxuserID<userid) maxuserID=userid;
         } // while (Line)
         
         //Handle (Create) last user 
-        ratings[currLine] = new Ratings(Integer.parseInt(Nums_Line[0]), String.valueOf(Running_Movie), Nums_Line[2], Nums_Line[3]); 
-
+        //ratings[currLine] = new Ratings(userid, String.valueOf(Running_Movie), Nums_Line[2], Nums_Line[3]); 
+        System.out.println("Max user="+maxuserID); //Show one user less: user 0
 
     } // try 
     catch (IOException e
@@ -305,35 +307,100 @@ public static void main (String args[]) {
 int[] totals = new int[2];
 int[] totals_item = new int[2];
 
-//totals=Video_Games_Load("/home/denis/Downloads/ratings_Video_Games_UserSorted.tab", simpleUsers, ratings);
-totals=Video_Games_Fix_USER_ID("/home/denis/Downloads/aek_sorted.txt", simpleUsers, ratings);
-System.out.println("Lines/Ratings:"+totals[0]+" Users:"+totals[1]);
+//PART A
+//Step 1 and Step 2 are linux based
 
-Print_Ratings(ratings, totals[0]);
-Print_Users(simpleUsers, totals[1]);
+//Step 3
+//totals=Video_Games_Fix_USER_ID("/home/denis/Downloads/ratings_Video_Games_UserSorted.tab", simpleUsers, ratings);
+//System.out.println("333.ITS OK! Lines/Ratings:"+totals[0]+" Users:"+totals[1]);
+//Print_Ratings(ratings, totals[0]);
+//Print_Users(simpleUsers, totals[1]);
 
-Video_Games_Store_FixUserID("/home/denis/Downloads/osfp.txt", simpleUsers, ratings, totals);
+//Step 4
+//Video_Games_Store_FixUserID("/home/denis/Downloads/ratings_Video_Games_FixedUserSorted.tab", simpleUsers, ratings, totals);
+//System.out.println("444.ITS OK! Lines/Ratings:"+totals[0]+" Users:"+totals[1]);
 
 //Print_Ratings(ratings, totals[0]);
 //Print_Users(simpleUsers, totals[1]);
 
-Arrays.fill(ratings,null);
+//PART B
+//Step 5 is linux based
 
-totals_item=Video_Games_Fix_ITEM_ID("/home/denis/Downloads/osfp_sorted.txt", ratings);
-System.out.println("Lines/Ratings:"+totals_item[0]+" Movies:"+totals_item[1]);
+//Step 6
+//Arrays.fill(ratings,null);
+//totals_item=Video_Games_Fix_ITEM_ID("/home/denis/Downloads/ratings_Video_Games_ItemSorted.tab", ratings);
+//System.out.println("666.Lines/Ratings:"+totals_item[0]+" Movies:"+totals_item[1]);
+//Print_Ratings(ratings, totals_item[0]);
+//Print_Users(simpleUsers, totals[1]);
 
-Print_Ratings(ratings, totals_item[0]);
-Print_Users(simpleUsers, totals[1]);
+//Step 7
+//Video_Games_Store_FixMovieID("/home/denis/Downloads/ratings_Video_Games_FixedItemSorted.tab", ratings, totals_item[0]);
+//System.out.println("777.Lines/Ratings:"+totals_item[0]+" Movies:"+totals_item[1]);
 
-Video_Games_Store_FixMovieID("/home/denis/Downloads/osfp_SemiFinal.txt", ratings, totals_item[0]);
+//PART C 
+//Step 8 is Linux based
 
-Arrays.fill(ratings,null);Arrays.fill(simpleUsers,null);
-totals=Video_Games_Fix_USER_ID("/home/denis/Downloads/osfp_SemiFinal_Sorted.txt", simpleUsers, ratings);
-Print_Ratings(ratings, totals[0]);
-Print_Users(simpleUsers, totals[1]);
-System.out.println("AAA Lines/Ratings:"+totals[0]+" Users:"+totals[1]);
-Video_Games_Store_FixUserID("/home/denis/Downloads/osfp_Final.txt", simpleUsers, ratings, totals);
-System.out.println("BBB Lines/Ratings:"+totals[0]+" Users:"+totals[1]);
+//Step 9
+//Arrays.fill(ratings,null);Arrays.fill(simpleUsers,null);
+//totals=Video_Games_Fix_USER_ID("/home/denis/Downloads/ratings_Video_Games_AllFixed.tab", simpleUsers, ratings);
+//System.out.println("999.Lines/Ratings:"+totals[0]+" Users:"+totals[1]);
+//Print_Ratings(ratings, totals[0]);
+//Print_Users(simpleUsers, totals[1]);
+
+//Step 10
+//Video_Games_Store_FixUserID("/home/denis/Downloads/ratings_Video_Games_Final.tab", simpleUsers, ratings, totals);
+//System.out.println("101010.Lines/Ratings:"+totals[0]+" Users:"+totals[1]);
+
+//---------------------TESTING -------------------------------
+//
+//------------------------------------------------------------
+//
+
+//PART A
+//Step 1 and Step 2 are linux based
+
+//Step 3
+//totals=Video_Games_Fix_USER_ID("/home/denis/Downloads/aek2.txt", simpleUsers, ratings);
+//System.out.println("333.ITS OK! Lines/Ratings:"+totals[0]+" Users:"+totals[1]);
+//Print_Ratings(ratings, totals[0]);
+//Print_Users(simpleUsers, totals[1]);
+
+//Step 4
+//Video_Games_Store_FixUserID("/home/denis/Downloads/aek3.txt", simpleUsers, ratings, totals);
+//System.out.println("444.ITS OK! Lines/Ratings:"+totals[0]+" Users:"+totals[1]);
+
+//Print_Ratings(ratings, totals[0]);
+//Print_Users(simpleUsers, totals[1]);
+
+//PART B
+//Step 5 is linux based
+
+//Step 6
+//Arrays.fill(ratings,null);
+//totals_item=Video_Games_Fix_ITEM_ID("/home/denis/Downloads/aek5.txt", ratings);
+//System.out.println("666.Lines/Ratings:"+totals_item[0]+" Movies:"+totals_item[1]);
+//Print_Ratings(ratings, totals_item[0]);
+//Print_Users(simpleUsers, totals[1]);
+
+//Step 7
+//Video_Games_Store_FixMovieID("/home/denis/Downloads/aek7.txt", ratings, totals_item[0]);
+//System.out.println("777.Lines/Ratings:"+totals_item[0]+" Movies:"+totals_item[1]);
+
+//PART C 
+//Step 8 is Linux based
+
+//Step 9
+//Arrays.fill(ratings,null);Arrays.fill(simpleUsers,null);
+//totals=Video_Games_Fix_USER_ID("/home/denis/Downloads/aek8.txt", simpleUsers, ratings);
+//System.out.println("999.Lines/Ratings:"+totals[0]+" Users:"+totals[1]);
+//Print_Ratings(ratings, totals[0]);
+//Print_Users(simpleUsers, totals[1]);
+
+//Step 10
+//Video_Games_Store_FixUserID("/home/denis/Downloads/aek10.txt", simpleUsers, ratings, totals);
+//ystem.out.println("101010.Lines/Ratings:"+totals[0]+" Users:"+totals[1]);
+
+
 } //Main 
 
 } //Class
