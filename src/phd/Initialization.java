@@ -9,6 +9,7 @@ package phd;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Scanner;
 import phd.Global_Vars;
 
@@ -433,7 +434,7 @@ try {   //Read Files. Initiate tables
         return mainStats;
 }        
 
-public static int[] Data_Initialisation_Amazon_Video_Games(String dataFile, User[] users, UserMovie[][] userMovies, int absMinTimeStamp, int absMaxTimeStamp)
+public static int[] Data_Initialisation_Amazon_Video_Games(String dataFile, User[] users, UserMovie[][] userMovies, HashSet<Integer>[] usersRatingSet, int absMinTimeStamp, int absMaxTimeStamp)
 {
 
 String Line;        //Each Line of the Text File
@@ -456,7 +457,7 @@ int NO3_RatingsSum=0;  //The sum of all UserID ratings, excluding 3-ratings
 //Vars for the data manipulation
 
 //The user we deal with
-//In 1M_Old first user has userID=1
+//In 1M_Old first user has userID=0
 int Running_User=0;             
 int Previous_User=0;        
 int Last_Movie=0;             //The Movie ID the UserID last, concerning time, rated
@@ -549,7 +550,7 @@ try {   //Read Files. Initiate tables
                 
                 //Running_Users_Rating++; //Next rating
                 
-                //Find min/max timestamp of u user
+                //Find min/max timestamp of user
                 if (Max_Time<RatingTimeStamp) 
                 {
                     Max_Time=RatingTimeStamp;

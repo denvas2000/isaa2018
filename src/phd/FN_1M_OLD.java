@@ -150,7 +150,7 @@ int[] totals = new int[2];
 
 firstTime=System.currentTimeMillis();
 startTime=System.currentTimeMillis();
-totals=Initialization.Data_Initialisation_1M_OLD("MovieLens_1M_Old_Sorted.txt", users, userMovies, absMinTimeStamp, absMaxTimeStamp);
+totals=Initialization.Data_Initialisation_1M_OLD("MovieLens_1M_Old.txt", users, userMovies, absMinTimeStamp, absMaxTimeStamp);
 initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
 totalUsers=totals[0];totalMovies=totals[1];
 Initialization.Compute_Inverse_Data(totalUsers, totalMovies, users, userMovies);

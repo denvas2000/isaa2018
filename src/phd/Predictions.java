@@ -238,8 +238,9 @@ double Numerator_Pred, Denominator_Pred;            //Numerator and Denominator 
 int predictedValues=0;                              //The total number of actually predicted values
 double combinedMAE=0.0;                             //Mean Absolute Error of Prediction.
 double sim;                                         //Similarity value of a current record
-HashSet<Integer> usersSet = new HashSet<Integer>();                       //Set containg the ID of similar users of a specific user
-Integer curUser;                                        //User under manipulation
+HashSet<Integer> usersSet = new HashSet<>();        //Set containg the ID of similar users of a specific user
+HashSet<Integer> userRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
+Integer curUser;                                    //User under manipulation
 Iterator<UserSimilarity> itr;
 UserSimilarity tempSim =new UserSimilarity();
 int temp=0, pos=0, neg=0;

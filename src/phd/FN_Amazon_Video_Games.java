@@ -58,6 +58,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 
 
@@ -74,6 +75,7 @@ static final int TOTAL_RATINGS=160000;
 
 static User[] users = new User[MAX_USERS];        
 static UserMovie[][] userMovies = new UserMovie[MAX_USERS][MAX_MOVIES];  //Store User Ratings
+static HashSet<Integer>[] usersRatingSet = new HashSet[MAX_USERS]; //Array Set containg for each user the Movies that has rated
 
 public static void Assign_Values(double[] values, int choice) {
 
@@ -114,7 +116,9 @@ List<UserSimilarity>[] RUS = new List[MAX_USERS];   //Array of list holding for 
 List<UserSimilarity>[] NO3RUS = new List[MAX_USERS];    //Array of list holding for each user the FN
 List<UserSimilarity>[] INVUS = new List[MAX_USERS];  
 List<UserSimilarity>[] COMBINE = new List[MAX_USERS];  
-       
+
+HashSet<Integer>   userRatingSet = new HashSet<>();            //Set containg for a specific user the Movies that has rated
+
 int totalUsers;                                  //The number of users 
 int totalMovies;                                 //The number of unique movies in DB
 
@@ -150,7 +154,7 @@ int[] totals = new int[2];
 
 firstTime=System.currentTimeMillis();
 startTime=System.currentTimeMillis();
-totals=Initialization.Data_Initialisation_Amazon_Video_Games("ratings_Video_Games_Final.tab", users, userMovies, absMinTimeStamp, absMaxTimeStamp);
+totals=Initialization.Data_Initialisation_Amazon_Video_Games("ratings_Video_Games_Final.tab", users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);
 initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
 totalUsers=totals[0];totalMovies=totals[1];
 Initialization.Compute_Inverse_Data(totalUsers, totalMovies, users, userMovies);
