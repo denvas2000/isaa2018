@@ -12,7 +12,9 @@
 package phd;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import static phd.FN_Amazon_Video_Games.usersRatingSet;
 
 public class Similarities {
 
@@ -64,6 +66,7 @@ int totalMovies,
 List<UserSimilarity>[] userSim,
 User[] Users,
 UserMovie[][] userMovies,
+HashSet<Integer>[] usersRatingSet,
 double simBase,
 int commonMovies
 //int absMinTimeStamp,
@@ -72,7 +75,7 @@ int commonMovies
     
 {
         
-int    i, j, k;
+int    i, j;
 double tempWeight;
 int    tempMovies;
 double averageUI, averageUJ;                    //Hold average rating of user i and j, respectively
@@ -80,6 +83,7 @@ double numeratorSimij, denominatorSimij;        //Numerator and Denominator of S
 double denominatorPartA, denominatorPartB;      //Denominator consists of two parts        
 double Similarity;
 double maxSimValue=Integer.MIN_VALUE, MinSimValue=Integer.MAX_VALUE;
+HashSet<Integer> userRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
 
 //System.out.println("Similarity"+simBase);
 for (i=0;i<=totalUsers;i++) 
@@ -99,7 +103,9 @@ for (i=0;i<=totalUsers-1;i++)
             averageUJ=Users[j].UserAverageRate();
             tempMovies=0;
                 
-            for (k=0;k<=totalMovies;k++)
+            //for (k=0;k<=totalMovies;k++)
+            userRatingSet=usersRatingSet[i];
+            for (int k: userRatingSet)
             {
 
                 if (!(userMovies[i][k]==null) && !(userMovies[j][k]==null))
@@ -272,13 +278,14 @@ int totalMovies,
 List<UserSimilarity>[] userSim,
 User[] users,
 UserMovie[][] userMovies,
+HashSet<Integer>[] usersRatingSet,
 int similaritySign,
 double simBase,
 int commonMovies)
     
 {
         
-int    i, j, k;
+int    i, j;
 double tempWeight, negWeight;
 int    tempMovies, temp_no3movies;
 double averageUI, averageUJ;                    //Hold average rating of user i and j, respectively
@@ -289,6 +296,8 @@ double NO3_numeratorSimij, NO3_denominatorSimij;
 double NO3_denominatorPartA, NO3_denominatorPartB;
 double NO3_similarity;
 double maxSimValue=Integer.MIN_VALUE, MinSimValue=Integer.MAX_VALUE;
+HashSet<Integer> userRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
+
 
 //System.out.println("Similarity"+simBase);
 for (i=0;i<=totalUsers;i++) 
@@ -310,7 +319,9 @@ for (i=0;i<=totalUsers-1;i++)
             averageUJ=users[j].UserAverageRate();
             tempMovies=0;temp_no3movies=0;
                 
-            for (k=0;k<=totalMovies;k++)
+            //for (k=0;k<=totalMovies;k++)
+            userRatingSet=usersRatingSet[i];
+            for (int k: userRatingSet)            
             {
 
                 if (!(userMovies[i][k]==null) && !(userMovies[j][k]==null))

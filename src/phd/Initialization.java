@@ -453,6 +453,7 @@ int RatingsSum=0;      //The sum of all UserID ratings
 int NO3_RatingsNum=0;  //The number of UserID ratings, excluding 3-ratings
 int NO3_RatingsSum=0;  //The sum of all UserID ratings, excluding 3-ratings
 
+HashSet<Integer> userRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
 
 //Vars for the data manipulation
 
@@ -513,6 +514,9 @@ try {   //Read Files. Initiate tables
                 //Initialize new user
                 users[Previous_User]= new User(Previous_User, Last_Movie, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
                                           Min_Time, Max_Time, minRating, maxRating);
+                usersRatingSet[Previous_User]= new HashSet<>();
+                usersRatingSet[Previous_User].addAll(userRatingSet);
+                
                 RatingsNum=0;
              
 
@@ -528,6 +532,7 @@ try {   //Read Files. Initiate tables
                 RatingsSum=0;
                 NO3_RatingsSum=0;NO3_RatingsNum=0;
                 Last_Movie=0;                           //If movieID=0 exists then it has to be a negative value
+                userRatingSet.clear();
                 
             }
                                                 // Read each user Data Line (user id, movie id 1, rating, time stamp
@@ -538,6 +543,7 @@ try {   //Read Files. Initiate tables
                 MovieID=Nums_Line[1];
                 UserRating=Nums_Line[2];
                 RatingsSum += UserRating;           //New Sum of the ratings of UserID
+                userRatingSet.add(MovieID);
                 if (UserRating!=3) 
                 {
                     NO3_RatingsSum+=UserRating;
@@ -582,6 +588,8 @@ try {   //Read Files. Initiate tables
             //Initialize new user
             users[Running_User]= new User(Running_User, Last_Movie, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
                                           Min_Time, Max_Time, minRating, maxRating);
+            usersRatingSet[Running_User]= new HashSet<>();
+            usersRatingSet[Running_User].addAll(userRatingSet);
         } 
         
         totalUsers=Running_User-1;
@@ -595,7 +603,7 @@ try {   //Read Files. Initiate tables
         int[] mainStats={totalUsers, totalMovies-1};
         return mainStats;
         
-} //method Data_Initialisation_1M_OLD
+} //method Data_Initialisation_Amazon_Video_Games
 
 }//END of class Initialization
 
