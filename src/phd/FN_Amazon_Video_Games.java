@@ -215,13 +215,12 @@ try(FileWriter outExcel = new FileWriter( "results_Amazon_Video_Games.txt" )) {
             startTime=System.currentTimeMillis();           //Set new timer
             Similarities.Compute_Similarity(totalUsers, totalMovies, RUS, users, userMovies, usersRatingSet, 0, (double)-m/100, n);
             simTime2=startTime-System.currentTimeMillis();
-/*            //startTime=System.currentTimeMillis();           //Set new timer
+            //startTime=System.currentTimeMillis();           //Set new timer
             //Similarities.Compute_Similarity(totalUsers, totalMovies, NO3RUS, users, userMovies, 2, (double)-m/100, n);
             //simTime3=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Inverted_Similarity(totalUsers, totalMovies, INVUS, users, userMovies, (double)m/100, n, absMinTimeStamp, absMaxTimeStamp);
+            Similarities.Inverted_Similarity(totalUsers, totalMovies, INVUS, users, userMovies, usersRatingSet, (double)m/100, n, absMinTimeStamp, absMaxTimeStamp);
             simTime3=startTime-System.currentTimeMillis();
-*/
             //System.out.println("aaa");
             //Similarities.Print_Similarities(totalUsers, INVUS);
             //Similarities.Print_Similarities(totalUsers, US);
@@ -234,7 +233,7 @@ try(FileWriter outExcel = new FileWriter( "results_Amazon_Video_Games.txt" )) {
                 Collections.sort(US[i],Collections.reverseOrder());
                 Collections.sort(RUS[i]);
 //                Collections.sort(NO3RUS[i]);
-    //            Collections.sort(INVUS[i],Collections.reverseOrder());
+                Collections.sort(INVUS[i],Collections.reverseOrder());
             }
             //System.out.println("bbb");
             //Similarities.Print_Similarities(totalUsers, INVUS);
@@ -246,7 +245,7 @@ try(FileWriter outExcel = new FileWriter( "results_Amazon_Video_Games.txt" )) {
             Phd_Utils.Strict_Similarities(totalUsers, US, users, userMovies);
             Phd_Utils.Strict_Similarities(totalUsers, RUS, users, userMovies);
 //            Phd_Utils.Strict_Similarities(totalUsers, NO3RUS, users, userMovies);
-    //        Phd_Utils.Strict_Similarities(totalUsers, INVUS, users, userMovies);     
+            Phd_Utils.Strict_Similarities(totalUsers, INVUS, users, userMovies);     
             strictTime=startTime-System.currentTimeMillis();
             //System.out.println("ccc");
             //Similarities.Print_Similarities(totalUsers, INVUS);
@@ -269,12 +268,12 @@ try(FileWriter outExcel = new FileWriter( "results_Amazon_Video_Games.txt" )) {
             predTime3=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings         
 
             startTime=System.currentTimeMillis();                    //New Timer
-      //      Assign_Values(Predictions.Inverted_Prediction(totalUsers, totalMovies, INVUS, users, userMovies, p),4);     
+            Assign_Values(Predictions.Inverted_Prediction(totalUsers, totalMovies, INVUS, users, userMovies, p),4);     
             //System.out.println(negAverMAE+" "+negAverPredictedValues);            
             predTime4=startTime-System.currentTimeMillis();    
         
             startTime=System.currentTimeMillis();                    //New Timer
-      //      Assign_Values(Predictions.Combined_Prediction(totalUsers, totalMovies, US, INVUS, COMBINE, users, userMovies, p),5);
+            Assign_Values(Predictions.Combined_Prediction(totalUsers, totalMovies, US, INVUS, COMBINE, users, userMovies, p),5);
             predTime5=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings 
 
             totalTime=firstTime-System.currentTimeMillis(); 
@@ -303,7 +302,7 @@ try(FileWriter outExcel = new FileWriter( "results_Amazon_Video_Games.txt" )) {
             out.write("\r\n");
 //            out.write("Calculate time to find Similarities (NO3 FN): "+Long.toString(simTime3));
 //            out.write("\r\n");
-    //        out.write("Calculate time to find Similarities (Dennis FN): "+Long.toString(simTime3));
+            out.write("Calculate time to find Similarities (Dennis FN): "+Long.toString(simTime3));
             out.write("\r\n");
             out.write("Sort Similarity arrays for all users: "+Long.toString(sortTime));
             out.write("\r\n");

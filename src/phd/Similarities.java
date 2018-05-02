@@ -178,6 +178,7 @@ int totalMovies,
 List<UserSimilarity>[] userSim,
 User[] Users,
 UserMovie[][] userMovies,
+HashSet<Integer>[] usersRatingSet,
 double simBase,
 int commonMovies,
 int absMinTimeStamp,
@@ -185,7 +186,7 @@ int absMaxTimeStamp)
     
 {
         
-int    i, j, k;
+int    i, j;
 double tempWeight;
 int    tempMovies;
 double averageUI, averageUJ;                    //Hold average rating of user i and j, respectively
@@ -193,6 +194,7 @@ double numeratorSimij, denominatorSimij;        //Numerator and Denominator of S
 double denominatorPartA, denominatorPartB;      //Denominator consists of two parts        
 double Similarity;
 double maxSimValue=Integer.MIN_VALUE, MinSimValue=Integer.MAX_VALUE;
+HashSet<Integer> userRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
 
 //System.out.println("Similarity"+simBase);
 for (i=0;i<=totalUsers;i++) 
@@ -212,7 +214,9 @@ for (i=0;i<=totalUsers-1;i++)
             averageUJ=Users[j].UserInvertedAverageRating();
             tempMovies=0;
                 
-            for (k=0;k<=totalMovies;k++)
+            //for (k=0;k<=totalMovies;k++)
+            userRatingSet=usersRatingSet[i];
+            for (int k: userRatingSet)
             {
 
                 if (!(userMovies[i][k]==null) && !(userMovies[j][k]==null))
