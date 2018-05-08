@@ -103,7 +103,13 @@ The only difference with method Data_Initialisation_100K_OLD is that the datafil
 of ratings for each user has to be estimated in a different way.
    *********************** */
 
-public static int[] Data_Initialisation_1M_OLD(String dataFile, User[] users, UserMovie[][] userMovies, int absMinTimeStamp, int absMaxTimeStamp)
+public static int[] Data_Initialisation_1M_OLD(
+String dataFile, 
+User[] users, 
+UserMovie[][] userMovies, 
+HashSet<Integer>[] usersRatingSet, 
+int absMinTimeStamp, 
+int absMaxTimeStamp)
 {
 
 String Line;        //Each Line of the Text File
@@ -122,6 +128,7 @@ int RatingsSum=0;      //The sum of all UserID ratings
 int NO3_RatingsNum=0;  //The number of UserID ratings, excluding 3-ratings
 int NO3_RatingsSum=0;  //The sum of all UserID ratings, excluding 3-ratings
 
+HashSet<Integer> userRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
 
 //Vars for the data manipulation
 
@@ -183,7 +190,10 @@ try {   //Read Files. Initiate tables
                 //Initialize new user
                 users[Previous_User-1]= new User(Previous_User-1, Last_Movie-1, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
                                           Min_Time, Max_Time, minRating, maxRating);
+                usersRatingSet[Previous_User-1]= new HashSet<>();
+                usersRatingSet[Previous_User-1].addAll(userRatingSet);
                 RatingsNum=0;
+                userRatingSet.clear();
              
 
                 //Start a new user
@@ -208,6 +218,7 @@ try {   //Read Files. Initiate tables
                 MovieID=Nums_Line[1];
                 UserRating=Nums_Line[2];
                 RatingsSum += UserRating;           //New Sum of the ratings of UserID
+                userRatingSet.add(MovieID);
                 if (UserRating!=3) 
                 {
                     NO3_RatingsSum+=UserRating;
@@ -252,6 +263,8 @@ try {   //Read Files. Initiate tables
             //Initialize new user
             users[Running_User-1]= new User(Running_User-1, Last_Movie-1, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
                                           Min_Time, Max_Time, minRating, maxRating);
+            usersRatingSet[Running_User]= new HashSet<>();
+            usersRatingSet[Running_User].addAll(userRatingSet);                        
         } 
         
         totalUsers=Running_User-1;
@@ -269,7 +282,13 @@ try {   //Read Files. Initiate tables
 
 
 
-public static int[] Data_Initialisation_100K_OLD(String dataFile, User[] users, UserMovie[][] userMovies, int absMinTimeStamp, int absMaxTimeStamp)
+public static int[] Data_Initialisation_100K_OLD(
+String dataFile, 
+User[] users, 
+UserMovie[][] userMovies, 
+HashSet<Integer>[] usersRatingSet, 
+int absMinTimeStamp, 
+int absMaxTimeStamp)
 {
 
 String Line;        //Each Line of the Text File
@@ -288,8 +307,10 @@ int RatingsSum=0;      //The sum of all UserID ratings
 int NO3_RatingsNum=0;  //The number of UserID ratings, excluding 3-ratings
 int NO3_RatingsSum=0;  //The sum of all UserID ratings, excluding 3-ratings
 
+HashSet<Integer> userRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
 
 //Vars for the data manipulation
+
 //The user we deal with
 //In 100K_Old first user has userID=0
 
@@ -348,7 +369,10 @@ try {   //Read Files. Initiate tables
                     //Initialize new user
                     users[Running_User]= new User(Running_User, Last_Movie, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
                                           Min_Time, Max_Time, minRating, maxRating);
+                    usersRatingSet[Running_User]= new HashSet<>();
+                    usersRatingSet[Running_User].addAll(userRatingSet);
                     RatingsNum=0;
+                    userRatingSet.clear();
                 } 
 
                 //Start a new user
@@ -376,6 +400,7 @@ try {   //Read Files. Initiate tables
                 MovieID=Nums_Line[1];
                 UserRating=Nums_Line[2];
                 RatingsSum += UserRating;           //New Sum of the ratings of UserID
+                userRatingSet.add(MovieID);
                 if (UserRating!=3) 
                 {
                     NO3_RatingsSum+=UserRating;
@@ -420,6 +445,8 @@ try {   //Read Files. Initiate tables
             //Initialize new user
             users[Running_User]= new User(Running_User, Last_Movie, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
                                           Min_Time, Max_Time, minRating, maxRating);
+            usersRatingSet[Running_User]= new HashSet<>();
+            usersRatingSet[Running_User].addAll(userRatingSet);            
         } 
         
         totalUsers=Running_User;

@@ -62,7 +62,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
+import java.util.HashSet;
 
 
 /**
@@ -133,7 +133,7 @@ static final int STRICT_SIMILARITY=1; //1=Only similar neighbors that rated last
 */
 static User[] users = new User[MAX_USERS];        
 static UserMovie[][] userMovies = new UserMovie[MAX_USERS][MAX_MOVIES];  //Store User Ratings
-
+static HashSet<Integer>[] usersRatingSet = new HashSet[MAX_USERS]; //Array Set containg for each user the Movies that has rated
 /*
 static public int simNeighbors=0, revSimNeighbors=0, NO3RevSimNeighbors=0,
                   negAverSimNeighbors;       //The Number of user having similar/reverse similar users                
@@ -226,7 +226,7 @@ ExecutorService es = Executors.newFixedThreadPool(2);
 
 firstTime=System.currentTimeMillis();
 startTime=System.currentTimeMillis();
-totals=Initialization.Data_Initialisation_100K_OLD("Movielens_100K_OLD_Sorted.txt", users, userMovies, absMinTimeStamp, absMaxTimeStamp);
+totals=Initialization.Data_Initialisation_100K_OLD("Movielens_100K_OLD_Sorted.txt", users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);
 initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
 totalUsers=totals[0];totalMovies=totals[1];
 Initialization.Compute_Inverse_Data(totalUsers, totalMovies, users, userMovies);
@@ -283,20 +283,20 @@ try(FileWriter outExcel = new FileWriter( "results_MovieLens100K_Old.txt" )) {
             NO3TotalMAE=0.0;TotalMAE=0.0;                                    
 
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Positive_Similarity(totalUsers, totalMovies, US, users, userMovies, (double)l/100, n); 
+            Similarities.Positive_Similarity(totalUsers, totalMovies, US, users, userMovies, usersRatingSet, (double)l/100, n); 
             simTime1=startTime-System.currentTimeMillis();                
 
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Positive_Similarity(totalUsers, totalMovies, US, users, userMovies, (double)l/100, n); 
+            Similarities.Positive_Similarity(totalUsers, totalMovies, US, users, userMovies, usersRatingSet, (double)l/100, n); 
             simTime1=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Compute_Similarity(totalUsers, totalMovies, RUS, users, userMovies, 0, (double)-m/100, n);
+            Similarities.Compute_Similarity(totalUsers, totalMovies, RUS, users, userMovies, usersRatingSet, 0, (double)-m/100, n);
             simTime2=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Compute_Similarity(totalUsers, totalMovies, NO3RUS, users, userMovies, 2, (double)-m/100, n);
+            Similarities.Compute_Similarity(totalUsers, totalMovies, NO3RUS, users, userMovies, usersRatingSet, 2, (double)-m/100, n);
             simTime3=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Inverted_Similarity(totalUsers, totalMovies, INVUS, users, userMovies, (double)m/100, n, absMinTimeStamp, absMaxTimeStamp);
+            Similarities.Inverted_Similarity(totalUsers, totalMovies, INVUS, users, userMovies, usersRatingSet, (double)m/100, n, absMinTimeStamp, absMaxTimeStamp);
             simTime4=startTime-System.currentTimeMillis();
 
             //System.out.println("aaa");
