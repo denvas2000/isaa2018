@@ -74,7 +74,7 @@ for (int s: aSet) {
 k=3;
 
 if (aSet.contains(k))
-System.out.println("AEK");
+System.out.println("AEK OLE");
 else
     aSet.add(k);
 
