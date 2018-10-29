@@ -1,7 +1,7 @@
 /*
 Version 1.2
 Main features:  Reads a text file with limited users/ratings, compared to initial dataset (over10_movielens_simple.rar - MovieLens 100K simple)
-                Calculates all data needed to perform NN-algorithm CF (reault a)*
+                Calculates all data needed to perform NN-algorithm CF (result a)*
                 Calculates all data needed to perform FN-algorithm CF (reverse Pearson - tranform ratings) (result b)
                 Compare result a to result b
                 Dynamic arrays, during execution to save memory space
@@ -15,7 +15,7 @@ Main features:  Reads a text file with limited users/ratings, compared to initia
                 Estimate NN and FN based only on K most recent ratings/per user.
                 Prints stats
                 Partial Separation Logic/Implementation
-                Move some methods to sepa  rate files (Phd_Utils).
+                Move some methods to separate files (Phd_Utils).
                 New Average Method for FN (inverted similarity)
                 Combined FN/NN
 
@@ -40,7 +40,7 @@ THIS FILE COMPUTES KEEP-N
 
 */
 
-//2147483647
+
 package phd;
 
 
@@ -72,6 +72,7 @@ import java.util.HashSet;
 public class FN_100K_OLD extends Global_Vars{
         
 
+//This values are produced from the real data file, before execution
 static final int MAX_USERS=950;        //Maximum Users the program can handle
 static final int MAX_MOVIES=1690;      //Maximum Movies the program can handle
 static final int TOTAL_RATINGS=100001;
@@ -184,10 +185,10 @@ double Similarity=0, KF_NO3_Similarity=0, MaxSimValue=0, MinSimValue=0;
         
 List<UserSimilarity> UserList = new ArrayList<>();
 List<UserSimilarity>[] US = new List[MAX_USERS];    //Array of list holding for each user the NN
-List<UserSimilarity>[] RUS = new List[MAX_USERS];   //Array of list holding for each user the FN
-List<UserSimilarity>[] NO3RUS = new List[MAX_USERS];    //Array of list holding for each user the FN
-List<UserSimilarity>[] INVUS = new List[MAX_USERS];  
-List<UserSimilarity>[] COMBINE = new List[MAX_USERS];  
+List<UserSimilarity>[] RUS = new List[MAX_USERS];      //Array of list holding for each user the FN
+List<UserSimilarity>[] NO3RUS = new List[MAX_USERS];    //Array of list holding for each user the FN removing 3-ratings
+List<UserSimilarity>[] INVUS = new List[MAX_USERS];     //Array of list holding for each user  the FN inverted to NN!
+List<UserSimilarity>[] COMBINE = new List[MAX_USERS];   //Array of list holding for each user the ??????????
        
 int totalUsers;                                  //The number of users 
 int totalMovies;                                 //The number of unique movies in DB
@@ -206,14 +207,15 @@ int temp_prediction;                                //values holding current (re
 int temp_rev_prediction;
 int temp_no3_rev_prediction;
         
-long firstTime, totalTime, startTime, initTime, simTime1, simTime2, simTime3, simTime4, sortTime, strictTime, predTime1, predTime2, predTime3, predTime4, predTime5;
+long firstTime, totalTime, startTime, initTime, simTime1, simTime2, simTime3, simTime4, //time metrics
+     sortTime, strictTime, predTime1, predTime2, predTime3, predTime4, predTime5;
         
 int i,j,k, l, m, n, o, p, q;
 int RevMode=0;
 int aa=0; 
 int[] totals = new int[2];
 
-ExecutorService es = Executors.newFixedThreadPool(2);
+//ExecutorService es = Executors.newFixedThreadPool(2);         //ΧΡΕΙΑΖΕΤΑΙ ????
 
 // PART A. INITIALISATION 
 //
@@ -240,14 +242,14 @@ System.out.println("totalUsers:"+totalUsers);
 //
 //EXPORT RESULTS TO TAB SEPARATED FILE
 //
-//            CALCULATE SIMPLE COLLABORATIVE FILTERING SIMILARITIES FOR BOTH NNs and KNs
+//CALCULATE SIMPLE COLLABORATIVE FILTERING SIMILARITIES FOR BOTH NNs and KNs
 
         
 try(FileWriter outExcel = new FileWriter( "results_MovieLens100K_Old.txt" )) {
 
     //Export File HEADINGS
     
-    outExcel.write("AA\tSimilarity"+"\tRevSimilarity"+"\tNO3RevSimilarity"+"\tMin Common Movies"+"\tFirst Best Neighs");
+    outExcel.write("AA\tMinSimilarity"+"\tMinRevSimilarity"+"\tNO3RevSimilarity"+"\tMin Common Movies"+"\tFirst Best Neighs");
     outExcel.write("\tNN Predictions"+"\tNN Coverage"+"\tNN MAE Sum"+"\tNN MAE CF");
     outExcel.write("\tFN Predictions"+"\tFN Coverage"+"\tFN MAE Sum"+"\tFN MAE CF");
     outExcel.write("\tNO3 FN Predictions"+"\tNO3 FN Coverage"+"\tNO3 FN MAE Sum"+"\tNO3 Rev MAE CF");
@@ -262,10 +264,10 @@ try(FileWriter outExcel = new FileWriter( "results_MovieLens100K_Old.txt" )) {
 
         //All parameters used fot the simulation process
         
-        //for (q=MIN_MOST_RECENT_RATINGS;q<=MIN_MOST_RECENT_RATINGS;q+=10)
-        for (p=DOWN_BEST_NEIGH;p<=UPPER_BEST_NEIGH;p+=10)
+//        for (q=MIN_MOST_RECENT_RATINGS;q<=MAX_MOST_RECENT_RATINGS;q+=10) //NOW WE TAKE INTO ACCOUNT ALL RATINGS
+        for (p=DOWN_BEST_NEIGH;p<=UPPER_BEST_NEIGH;p+=10)                  
         for (n=MIN_COMMON_MOVIES;n<=MAX_COMMON_MOVIES;n+=10)
- //       for (o=MIN_SIMILAR_NEIGH;o<=MAX_SIMILAR_NEIGH;o+=10)  //OBSOLETE - NOT USED ANY MORE
+//        for (o=MIN_SIMILAR_NEIGH;o<=MAX_SIMILAR_NEIGH;o+=10)  //OBSOLETE - NOT USED ANY MORE
         for (l=SIMILARITY_BASE_LIMIT;l<=SIMILARITY_UPPER_LIMIT;l+=20)
         for (m=NEGATIVE_SIMILARITY_BASE_LIMIT;m<=NEGATIVE_SIMILARITY_UPPER_LIMIT;m+=20)    
         {            
@@ -286,9 +288,6 @@ try(FileWriter outExcel = new FileWriter( "results_MovieLens100K_Old.txt" )) {
             Similarities.Positive_Similarity(totalUsers, totalMovies, US, users, userMovies, usersRatingSet, (double)l/100, n); 
             simTime1=startTime-System.currentTimeMillis();                
 
-            startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Positive_Similarity(totalUsers, totalMovies, US, users, userMovies, usersRatingSet, (double)l/100, n); 
-            simTime1=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
             Similarities.Compute_Similarity(totalUsers, totalMovies, RUS, users, userMovies, usersRatingSet, 0, (double)-m/100, n);
             simTime2=startTime-System.currentTimeMillis();
@@ -338,7 +337,7 @@ try(FileWriter outExcel = new FileWriter( "results_MovieLens100K_Old.txt" )) {
             startTime=System.currentTimeMillis();                    //New Timer
             Assign_Values(Predictions.Positive_Prediction(totalUsers, totalMovies, US, users, userMovies, p),1);
             predTime1=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings 
-
+            
             startTime=System.currentTimeMillis();                    //New Timer
             Assign_Values(Predictions.Compute_Prediction(totalUsers, totalMovies, RUS, users, userMovies, 1, p),2);            
             predTime2=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings         

@@ -54,7 +54,13 @@ if (diff>0.5)
     
 return newRating;    
 }
-    
+
+/* ***********************
+METHOD: Compute Inverse Data
+For each user rating i invert its rating value. Depending on how far is the average value of a single user to 
+the global average (e.g. for rating 1-5 its 3, but for ratings 0-5 its 2.5)
+   *********************** */
+
 public static void Compute_Inverse_Data(
 int totalUsers, 
 int totalMovies,
@@ -281,6 +287,14 @@ try {   //Read Files. Initiate tables
 } //method Data_Initialisation_1M_OLD
 
 
+/* ***********************
+METHOD: Data_Initialisation_100Κ_OLD
+Setup Method for filling up the array with values read from the datafile.
+All ratings of a single user are grouped together. In order to make programming simpler, i have sorted the file
+based on the timestamp, per user. For that task i used excel.
+For each user there is a header row indicating the number of the user's ratings. So it's easy to find out when
+a ratings of a specific user are ending.
+   *********************** */
 
 public static int[] Data_Initialisation_100K_OLD(
 String dataFile, 

@@ -52,7 +52,7 @@ for (i=0;i<=totalUsers;i++)
 /**
  * 
  * Compute_Positive-Similarity: Method to compute ONLY POSITIVE similarities among all neighbors. 
- * Accepts as imput the following variables
+ * Accepts as input the following variables
  * 
  * @param totalUsers
  * @param totalMovies
@@ -263,7 +263,7 @@ for (i=0;i<=totalUsers-1;i++)
 
 }
 
-} //END OF METHOD Positive_Similarity
+} //END OF METHOD Inverted_Similarity
 
 /**
  * 
