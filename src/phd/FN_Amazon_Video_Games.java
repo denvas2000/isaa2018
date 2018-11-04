@@ -157,7 +157,7 @@ totals=Initialization.Data_Initialisation_Amazon_Video_Games("ratings_Video_Game
 initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
 totalUsers=totals[0];totalMovies=totals[1];
 Initialization.Compute_Inverse_Data(totalUsers, totalMovies, users, userMovies);
-System.out.println("totalUsers:"+totalUsers); 
+System.out.println("totalUsers:"+totalUsers+"totalMovies:"+totalMovies); 
 
 // -------- End reading data file. All data are in memory (Tables) ----------- 
 

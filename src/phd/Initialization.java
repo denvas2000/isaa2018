@@ -281,6 +281,11 @@ try {   //Read Files. Initiate tables
 } //method Data_Initialisation_1M_OLD
 
 
+/* ***********************
+METHOD: Data_Initialisation_100K_OLD
+Users ratings are grouped per user. The first line indicates the number of ratings of the user (then timestamp=2147483647).
+Using excel, the file is sorted per user, in descending time order (newest rating first, look the timestamp data field )
+   *********************** */
 
 public static int[] Data_Initialisation_100K_OLD(
 String dataFile, 
@@ -356,13 +361,15 @@ try {   //Read Files. Initiate tables
             
             Scan_Line.close();
             
-            /* -----        FINISH: READ A SINGLE LINE            ----- */
+            /* FINISH: READ A SINGLE LINE   */
+            /* ************************************ */
            
+            /* ************************************ */
             /* ------ START: STORE NUMBERS IN THE RIGHT TABLES -------- */
             
             
-            if ((Nums_Line[3]==2147483647) || (Nums_Per_Line_Count==3))          // Read each user Header Line (user id, 0, number of ratings 
-            {                                       // Store values in User_Ratings_Summary[0=user_id, 1=number of ratings, 2=Sum of all ratings)
+            if ((Nums_Line[3]==2147483647) || (Nums_Per_Line_Count==3))   // Read each user Header Line (user id, 0, number of ratings 
+            {                                                             // Value 2147483647 in timestamp data field indicates Header Line
 
                 if (Running_User!=Next_User)        //Create user after all calculations are over
                 {
@@ -393,7 +400,7 @@ try {   //Read Files. Initiate tables
 
             }
             else                                    // Read each user Data Line (user id, movie id 1, rating, time stamp
-            if (RatingsNum<Global_Vars.MAX_MOST_RECENT_RATINGS)
+            if (RatingsNum<Global_Vars.MAX_MOST_RECENT_RATINGS) //At most the first MAX_MOST_RECENT_RATINGS
             {                                       // Store values in User_Ratings[0=user_id, 1=movie_id, 2=rating, 3=time stamp)
                 RatingsNum++;
                 //Get data values
@@ -409,9 +416,7 @@ try {   //Read Files. Initiate tables
                 RatingTimeStamp=Nums_Line[3];
                 
                 if (totalMovies<MovieID) totalMovies=MovieID;   //Renew the total number of rated Movies, by all Users
-                                                                  //IF MOVIESIDs WERE NOT JUST INCREMENTAL, IT HAD TO BE TREATED DIFFERENTLY
-                
-                //Running_Users_Rating++; //Next rating
+                                                                //IF MOVIESIDs WERE NOT JUST INCREMENTAL, IT HAD TO BE TREATED DIFFERENTLY
                 
                 //Find min/max timestamp of u user
                 if (Max_Time<RatingTimeStamp) 
@@ -457,9 +462,12 @@ try {   //Read Files. Initiate tables
             e.printStackTrace();
 
 	} //catch file error
+
         int[] mainStats={totalUsers, totalMovies};
+        
         return mainStats;
-}        
+        
+} //Data_Initialisation_100K_OLD
 
 public static int[] Data_Initialisation_Amazon_Video_Games(String dataFile, User[] users, UserMovie[][] userMovies, HashSet<Integer>[] usersRatingSet, int absMinTimeStamp, int absMaxTimeStamp)
 {

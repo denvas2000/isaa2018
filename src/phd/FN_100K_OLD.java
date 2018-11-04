@@ -172,7 +172,7 @@ else
    
 }
 
-}// Methid Print_to_File
+}// Method Print_to_File
 
 public static void main(String[] args) {
         
@@ -230,7 +230,7 @@ totals=Initialization.Data_Initialisation_100K_OLD("Movielens_100K_OLD_Sorted.tx
 initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
 totalUsers=totals[0];totalMovies=totals[1];
 Initialization.Compute_Inverse_Data(totalUsers, totalMovies, users, userMovies);
-System.out.println("totalUsers:"+totalUsers); 
+System.out.println("totalUsers:"+totalUsers+"totalMovies:"+totalMovies); 
 
 // -------- End reading data file. All data are in memory (Tables) ----------- 
 
@@ -281,10 +281,6 @@ try(FileWriter outExcel = new FileWriter( "results_MovieLens100K_Old.txt" )) {
 
             TotalPredictedValues=0;NO3TotalPredictedValues=0;            
             NO3TotalMAE=0.0;TotalMAE=0.0;                                    
-
-            startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Positive_Similarity(totalUsers, totalMovies, US, users, userMovies, usersRatingSet, (double)l/100, n); 
-            simTime1=startTime-System.currentTimeMillis();                
 
             startTime=System.currentTimeMillis();           //Set new timer
             Similarities.Positive_Similarity(totalUsers, totalMovies, US, users, userMovies, usersRatingSet, (double)l/100, n); 
@@ -357,7 +353,7 @@ try(FileWriter outExcel = new FileWriter( "results_MovieLens100K_Old.txt" )) {
             predTime5=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings 
 
             totalTime=firstTime-System.currentTimeMillis(); 
-        //Testing the process so far 
+            //Testing the process so far 
             aa++;    
 
             outExcel.write(aa+"\t"+(double)l/100+"\t"+(double)-m/100+"\t"+(double)-m/100+"\t"+n+"\t"+p);

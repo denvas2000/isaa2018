@@ -22,13 +22,13 @@ public class HashTest {
         HashMap hasharray[] = new HashMap[10];
         
         
-        hmuser.put(1,new User(200,200,200));
-        hmuser.put(2,new User(300,200,200));
+        hmuser.put(1,new User(2001,200,200));
+        hmuser.put(2,new User(3001,200,200));
         
         hm.put(1, 10);
-        hm.put(2, 10);
+        hm.put(2, 50);
         hm.put(1, 10);
-        hm.put(1, 10);
+        hm.put(1, 40);
         
         
         //SIMPLE HASH MAP

@@ -14,7 +14,7 @@ package phd;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import static phd.FN_Amazon_Video_Games.usersRatingSet;
+//import static phd.FN_Amazon_Video_Games.usersRatingSet;
 
 public class Similarities {
 
@@ -57,7 +57,10 @@ for (i=0;i<=totalUsers;i++)
  * @param totalUsers
  * @param totalMovies
  * @param userSim
- * @param similaritySign 
+ * @param Users
+ * @param userMovies
+ * @param usersRatingSet
+ 
  */
 
 public static void Positive_Similarity (
@@ -263,7 +266,7 @@ for (i=0;i<=totalUsers-1;i++)
 
 }
 
-} //END OF METHOD Positive_Similarity
+} //END OF METHOD Inverted_Similarity
 
 /**
  * 

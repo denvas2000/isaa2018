@@ -68,7 +68,7 @@ import java.util.HashSet;
 public class FN_1M_OLD extends Global_Vars{
         
 //Movielens 1M_Old
-static final int MAX_USERS=6040;        //Maximum Users the program can handle
+static final int MAX_USERS=6045;        //Maximum Users the program can handle
 static final int MAX_MOVIES=3955;       //Maximum Movies the program can handle
 static final int TOTAL_RATINGS=1000209;
 
@@ -155,7 +155,7 @@ totals=Initialization.Data_Initialisation_1M_OLD("MovieLens_1M_Old.txt", users, 
 initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
 totalUsers=totals[0];totalMovies=totals[1];
 Initialization.Compute_Inverse_Data(totalUsers, totalMovies, users, userMovies);
-System.out.println("totalUsers:"+totalUsers); 
+System.out.println("totalUsers:"+totalUsers+"totalMovies:"+totalMovies); 
 
 // -------- End reading data file. All data are in memory (Tables) ----------- 
 
@@ -168,7 +168,7 @@ System.out.println("totalUsers:"+totalUsers);
 //            CALCULATE SIMPLE COLLABORATIVE FILTERING SIMILARITIES FOR BOTH NNs and KNs
 
         
-try(FileWriter outExcel = new FileWriter( "results_1M_OLD.txt" )) {
+try(FileWriter outExcel = new FileWriter( "results_Movielens_1M_OLD.txt" )) {
 
     //Export File HEADINGS
     
@@ -182,7 +182,7 @@ try(FileWriter outExcel = new FileWriter( "results_1M_OLD.txt" )) {
     
     //Print_to_File(outExcel,1);            
     
-    try(FileWriter out = new FileWriter( "Multiple_Repeat_Results_1M_old.txt" ))            //Open file for writing
+    try(FileWriter out = new FileWriter( "Time_Movielens_1M_old.txt" ))            //Open file for writing
     {
 
         //All parameters used fot the simulation process
@@ -213,9 +213,9 @@ try(FileWriter outExcel = new FileWriter( "results_1M_OLD.txt" )) {
             startTime=System.currentTimeMillis();           //Set new timer
             Similarities.Compute_Similarity(totalUsers, totalMovies, RUS, users, userMovies, usersRatingSet, 0, (double)-m/100, n);
             simTime2=startTime-System.currentTimeMillis();
-            //startTime=System.currentTimeMillis();           //Set new timer
-            //Similarities.Compute_Similarity(totalUsers, totalMovies, NO3RUS, users, userMovies, 2, (double)-m/100, n);
-            //simTime3=startTime-System.currentTimeMillis();
+            startTime=System.currentTimeMillis();           //Set new timer
+            Similarities.Compute_Similarity(totalUsers, totalMovies, NO3RUS, users, userMovies, usersRatingSet, 2, (double)-m/100, n);
+            simTime3=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
             Similarities.Inverted_Similarity(totalUsers, totalMovies, INVUS, users, userMovies, usersRatingSet, (double)m/100, n, absMinTimeStamp, absMaxTimeStamp);
             simTime3=startTime-System.currentTimeMillis();
@@ -231,7 +231,7 @@ try(FileWriter outExcel = new FileWriter( "results_1M_OLD.txt" )) {
             {
                 Collections.sort(US[i],Collections.reverseOrder());
                 Collections.sort(RUS[i]);
-//                Collections.sort(NO3RUS[i]);
+                Collections.sort(NO3RUS[i]);
                 Collections.sort(INVUS[i],Collections.reverseOrder());
             }
             //System.out.println("bbb");
@@ -243,7 +243,7 @@ try(FileWriter outExcel = new FileWriter( "results_1M_OLD.txt" )) {
             startTime=System.currentTimeMillis();
             Phd_Utils.Strict_Similarities(totalUsers, US, users, userMovies);
             Phd_Utils.Strict_Similarities(totalUsers, RUS, users, userMovies);
-//            Phd_Utils.Strict_Similarities(totalUsers, NO3RUS, users, userMovies);
+            Phd_Utils.Strict_Similarities(totalUsers, NO3RUS, users, userMovies);
             Phd_Utils.Strict_Similarities(totalUsers, INVUS, users, userMovies);     
             strictTime=startTime-System.currentTimeMillis();
             //System.out.println("ccc");
@@ -263,7 +263,7 @@ try(FileWriter outExcel = new FileWriter( "results_1M_OLD.txt" )) {
             predTime2=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings         
 
             startTime=System.currentTimeMillis();                    //New Timer
-    //        Assign_Values(Predictions.Compute_Prediction(totalUsers, totalMovies, NO3RUS, users, userMovies, 2, p),3);                 
+            Assign_Values(Predictions.Compute_Prediction(totalUsers, totalMovies, NO3RUS, users, userMovies, 2, p),3);                 
             predTime3=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings         
 
             startTime=System.currentTimeMillis();                    //New Timer
@@ -283,7 +283,7 @@ try(FileWriter outExcel = new FileWriter( "results_1M_OLD.txt" )) {
             outExcel.write(aa+"\t"+(double)l/100+"\t"+(double)-m/100+"\t"+(double)-m/100+"\t"+n+"\t"+p);
             outExcel.write("\t"+positivePredictions+"\t"+(double)positivePredictions/(totalUsers+1)+"\t"+MAE+"\t"+(double)(MAE/positivePredictions));
             outExcel.write("\t"+revPredictedValues+"\t"+(double)revPredictedValues/(totalUsers+1)+"\t"+RevMAE+"\t"+(double)(RevMAE/revPredictedValues));
-            //outExcel.write("\t"+NO3RevPredictedValues+"\t"+(double)NO3RevPredictedValues/(totalUsers+1)+"\t"+NO3RevMAE+"\t"+(double)(NO3RevMAE/NO3RevPredictedValues));
+            outExcel.write("\t"+NO3RevPredictedValues+"\t"+(double)NO3RevPredictedValues/(totalUsers+1)+"\t"+NO3RevMAE+"\t"+(double)(NO3RevMAE/NO3RevPredictedValues));
             outExcel.write("\t"+negAverPredictedValues+"\t"+(double)negAverPredictedValues/(totalUsers+1)+"\t"+negAverMAE+"\t"+(double)(negAverMAE/negAverPredictedValues));            
             outExcel.write("\t"+combinedPredictions+"\t"+(double)combinedPredictions/(totalUsers+1)+"\t"+combinedMAE+"\t"+(double)(combinedMAE/combinedPredictions));
             outExcel.write("\r\n"); 
@@ -299,8 +299,8 @@ try(FileWriter outExcel = new FileWriter( "results_1M_OLD.txt" )) {
             out.write("\r\n");
             out.write("Calculate time to find Similarities (FN): "+Long.toString(simTime2));
             out.write("\r\n");
-//            out.write("Calculate time to find Similarities (NO3 FN): "+Long.toString(simTime3));
-//            out.write("\r\n");
+            out.write("Calculate time to find Similarities (NO3 FN): "+Long.toString(simTime3));
+            out.write("\r\n");
             out.write("Calculate time to find Similarities (Dennis FN): "+Long.toString(simTime3));
             out.write("\r\n");
             out.write("Sort Similarity arrays for all users: "+Long.toString(sortTime));
@@ -311,8 +311,8 @@ try(FileWriter outExcel = new FileWriter( "results_1M_OLD.txt" )) {
             out.write("\r\n");
             out.write("Calculate time to make Predictions (FN): "+predTime2);
             out.write("\r\n");
-    //        out.write("Calculate time to make Predictions (NO3 FN): "+predTime3);
-    //        out.write("\r\n");
+            out.write("Calculate time to make Predictions (NO3 FN): "+predTime3);
+            out.write("\r\n");
             out.write("Calculate time to make Predictions (FN Dennis): "+predTime4);
             out.write("\r\n");
             out.write("Calculate time to make Predictions (Combined NN - FN Dennis): "+predTime5);

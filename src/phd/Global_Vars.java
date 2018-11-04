@@ -15,9 +15,9 @@ static final int NO_PREDICTION=-10;    //"Prediction value" for items that canno
 static final int MAX_RATING=5;
 
 static final int SIMILARITY_BASE_LIMIT=0;   //Compute Similarity: Greater/Lesser or equal than .. (>= or <=)
-static final int SIMILARITY_UPPER_LIMIT=60;
+static final int SIMILARITY_UPPER_LIMIT=100;
 static final int NEGATIVE_SIMILARITY_BASE_LIMIT=0;         //FOR SIMPLE CALC BEST 20
-static final int NEGATIVE_SIMILARITY_UPPER_LIMIT=40;
+static final int NEGATIVE_SIMILARITY_UPPER_LIMIT=100;
 //static final int NO3_NEGATIVE_SIMILARITY_BASE_LIMIT=0;
 //static final int NO3_NEGATIVE_SIMILARITY_UPPER_LIMIT=0;   
 
@@ -44,8 +44,8 @@ static final int UPPER_BEST_NEIGH=150;
 //70% of users having < 105 (Movielens 100k simple)
 //When there is no need to exclude any user based on the number of his ratings, the numbes have to be hiiiiighhh >1500.
 //NOW ALL CALCULATIONS ARE BASED on MAX_MOST_RECENT_RATINGS
-static final int MIN_MOST_RECENT_RATINGS=150;          
-static final int MAX_MOST_RECENT_RATINGS=150;          
+static final int MIN_MOST_RECENT_RATINGS=1500;          
+static final int MAX_MOST_RECENT_RATINGS=1500;          
 
 // First and last rating must have a minimum time distance. 4 sec are the minimum.
 //Used inQ COMPUTE SIMILARITY: Greater than .. (>)
