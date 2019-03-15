@@ -188,8 +188,8 @@ try {   //Read Files. Initiate tables
             if (Running_User!=Previous_User)        //Create user after all calculations are over
             {
                 //Initialize new user
-                users[Previous_User-1]= new User(Previous_User-1, Last_Movie-1, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
-                                          Min_Time, Max_Time, minRating, maxRating);
+                users[Previous_User-1]= new User(-1, Last_Movie-1, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
+                                          Min_Time, Max_TimPrevious_Usere, minRating, maxRating);
                 usersRatingSet[Previous_User-1]= new HashSet<>();
                 usersRatingSet[Previous_User-1].addAll(userRatingSet);
                 RatingsNum=0;
@@ -227,7 +227,7 @@ try {   //Read Files. Initiate tables
                 RatingTimeStamp=Nums_Line[3];
                 
                 if (totalMovies<MovieID) totalMovies=MovieID;   //Renew the total number of rated Movies, by all Users
-                                                                  //IF MOVIESIDs WERE NOT JUST INCREMENTAL, IT HAD TO BE TREATED DIFFERENTLY
+                                                                //IF MOVIESIDs WERE NOT JUST INCREMENTAL, IT HAD TO BE TREATED DIFFERENTLY
                 
                 //Running_Users_Rating++; //Next rating
                 
