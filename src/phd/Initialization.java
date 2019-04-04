@@ -65,6 +65,7 @@ int i, j;
 int tempRating;
 int tempInvRating;
 int tempSum;
+int i1=0;
 double tempAverage;      
 double diff;
 
@@ -72,14 +73,14 @@ System.out.println("totaluser:"+totalUsers);
 System.out.println("totalmovies:"+totalMovies);
 for (i=0;i<=totalUsers;i++)
 {
-    //System.out.println("i"+i+" average"+users[i].UserAverageRate());
+    
     //System.out.println("i"+i);
     tempAverage=users[i].UserAverageRate();
     tempSum=0;
     
     for (j=0;j<=totalMovies;j++)
     {
-        
+        //if (i==22) System.out.print("i"+i+" j"+j+" "+userMovies[i][j].getRating());
         if (!(userMovies[i][j]==null))
         {
     
@@ -88,11 +89,15 @@ for (i=0;i<=totalUsers;i++)
             tempInvRating=New_Rating(tempRating,diff);
             tempSum+=tempInvRating;
             userMovies[i][j].invRating=tempInvRating;
+            //if (i==22) System.out.println(i+" "+j+" Rate:"+tempRating+" Inv:"+tempInvRating);           
         }
     } //for j
     
     users[i].invRatingSum=tempSum;
-    
+/*    
+    i1+=tempSum;
+    System.out.println(i+" "+tempSum+" "+i1);
+*/        
 } //for i
 
 } //END of class Compute_Inverse_Data
@@ -138,13 +143,13 @@ int Running_User=1;
 int Previous_User=1;        
 
 int User_Ratings_Sum=0;       //Sum of all rating values of a single UseiID
-int Min_Time = 0;             //Min time stamp of a UseiID
+int Min_Time = Integer.MAX_VALUE;             //Min time stamp of a UseiID
 int Max_Time = 0;             //Max time stamp of a UseiID
-int maxRating=1;
+int maxRating=0;
 int minRating=5;
 int Last_Movie=0;             //The Movie ID the UserID last, concerning time, rated
 
-
+int userMovieCells=0;
 int totalUsers=0;
 int totalMovies=0;
         
@@ -188,8 +193,8 @@ try {   //Read Files. Initiate tables
             if (Running_User!=Previous_User)        //Create user after all calculations are over
             {
                 //Initialize new user
-                users[Previous_User-1]= new User(-1, Last_Movie-1, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
-                                          Min_Time, Max_TimPrevious_Usere, minRating, maxRating);
+                users[Previous_User-1]= new User(Previous_User-1, Last_Movie, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
+                                          Min_Time, Max_Time, minRating, maxRating);
                 usersRatingSet[Previous_User-1]= new HashSet<>();
                 usersRatingSet[Previous_User-1].addAll(userRatingSet);
                 RatingsNum=0;
@@ -204,7 +209,7 @@ try {   //Read Files. Initiate tables
                 //Initialize current user running data
                 Min_Time=Integer.MAX_VALUE;
                 Max_Time=Integer.MIN_VALUE;
-                minRating=5;maxRating=1;
+                minRating=5;maxRating=0;
                 RatingsSum=0;
                 NO3_RatingsSum=0;NO3_RatingsNum=0;
                 Last_Movie=0;                           //If movieID=0 exists then it has to be a negative value
@@ -252,7 +257,8 @@ try {   //Read Files. Initiate tables
                 
                 //Create the main Users*Movies Table. Each cell holds the rating of a user to a
                 //specific movie.
-                userMovies[Running_User-1][MovieID-1]=new UserMovie(Running_User-1,MovieID-1,UserRating, RatingTimeStamp,0);
+                userMovies[Running_User-1][MovieID]=new UserMovie(Running_User-1,MovieID,UserRating, RatingTimeStamp,0);
+                userMovieCells++;
 
             }//else if
             
@@ -261,7 +267,7 @@ try {   //Read Files. Initiate tables
         if (Running_User!=1)        //Handle (Create) last user 
         {
             //Initialize new user
-            users[Running_User-1]= new User(Running_User-1, Last_Movie-1, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
+            users[Running_User-1]= new User(Running_User-1, Last_Movie, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
                                           Min_Time, Max_Time, minRating, maxRating);
             usersRatingSet[Running_User]= new HashSet<>();
             usersRatingSet[Running_User].addAll(userRatingSet);                        
@@ -275,7 +281,8 @@ try {   //Read Files. Initiate tables
             e.printStackTrace();
 
 	} //catch file error
-        int[] mainStats={totalUsers, totalMovies-1};
+        System.out.println("Size during initialization:"+userMovieCells);
+        int[] mainStats={totalUsers, totalMovies};
         return mainStats;
         
 } //method Data_Initialisation_1M_OLD
@@ -372,7 +379,7 @@ try {   //Read Files. Initiate tables
             {                                                             // Value 2147483647 in timestamp data field indicates Header Line
 
                 if (Running_User!=Next_User)        //Create user after all calculations are over
-                {
+            {
                     //Initialize new user
                     users[Running_User]= new User(Running_User, Last_Movie, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
                                           Min_Time, Max_Time, minRating, maxRating);

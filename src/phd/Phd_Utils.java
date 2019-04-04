@@ -18,6 +18,7 @@ package phd;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 
 public class Phd_Utils {
@@ -25,7 +26,7 @@ public class Phd_Utils {
     
 /**
  * 
- * Strict_Similarities: Method to keep only similat neighbors that have rated last movieID
+ * Strict_Similarities: Method to keep only similar neighbors that have rated last movieID
  * 
  */
 
@@ -49,7 +50,7 @@ for (i=0;i<=totalUsers;i++)
     {   
         while (itr.hasNext())
         {
-            io = new UserSimilarity();
+            //io = new UserSimilarity();
             io = itr.next();
             if (userMovies[io.SUser_Id][lastMovie]==null)
                 itr.remove();
@@ -89,18 +90,53 @@ return weight;
 }
 
 
-public static void Print_UserRatings(int totalUsers, int totalMovies, User[] Users, UserMovie[][] userMovies){
+public static void Print_UserRatings(int totalUsers, int totalMovies, User[] Users, UserMovie[][] userMovies, HashSet<Integer>[] usersRatingSet){
 int i, j;
+HashSet<Integer> userRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
 
 for (i=0; i<=totalUsers;i++) {
 
-System.out.println("User: "+i+" Ratings: "+Users[i].getRatingNum()+" Ratings Sum: "+Users[i].getRatingSum()+" Ratings Inv Sum: "+Users[i].invRatingSum+" Average: "+Users[i].UserAverageRate()+" Inv Average: "+Users[i].UserInvertedAverageRating()); 
-for (j=0; j<=totalUsers;j++) {
-    if (!(userMovies[i][j]==null)) 
-    {
-        System.out.println("Movie: "+j+" Rating: "+userMovies[i][j].getRating()+" Inv Rating: "+userMovies[i][j].invRating); 
-    }    
-}
-}
-}
+    System.out.println("\nUser: "+i+" Ratings: "+Users[i].getRatingNum()+" Ratings Sum: "+Users[i].getRatingSum()+" Ratings Inv Sum: "+Users[i].invRatingSum+" Average: "+Users[i].UserAverageRate()+" Inv Average: "+Users[i].UserInvertedAverageRating()); 
+    
+     userRatingSet=usersRatingSet[i];
+     for (int k: userRatingSet)
+     {
+         System.out.print(" "+k);
+     }
+/*    for (i=0; i<=totalUsers;i++)
+        for (j=0; j<=totalMovies;j++) {
+        
+            if (!(userMovies[i][j]==null)) {
+        
+                System.out.println("Movie: "+j+" Rating: "+userMovies[i][j].getRating()+" Inv Rating: "+userMovies[i][j].invRating); 
+                
+            }//if
+        
+        } // for j */
+    
+} // for i
+
+} //Method Print_UserRatings
+
+public static void Print_UserItems(int totalUsers, int totalMovies, User[] Users, UserMovie[][] userMovies){
+int i, j;
+
+for (i=0; i<=totalUsers;i++) {
+    
+    System.out.println("\nUser: "+i+" Ratings: "+Users[i].getRatingNum()+" Ratings Sum: "+Users[i].getRatingSum()+" Ratings Inv Sum: "+Users[i].invRatingSum+" Average: "+Users[i].UserAverageRate()+" Inv Average: "+Users[i].UserInvertedAverageRating()); 
+        for (j=0; j<=totalMovies;j++) {
+        
+            if (!(userMovies[i][j]==null)) {
+        
+                System.out.print(" "+j); 
+                
+            }//if
+        
+        } // for j
+    
+} // for i
+
+} //Method Print_UserRatings
+              
 } //END class Phd_Utils
+

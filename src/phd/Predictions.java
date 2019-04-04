@@ -198,6 +198,7 @@ for (i=0;i<=totalUsers;i++)
             if ((users[i].getPrediction()<1) && (users[i].getPrediction()!=Global_Vars.NO_PREDICTION))users[i].setPrediction(1);                
                     
             MAE += Math.abs(users[i].getPrediction()-userMovies[i][users[i].lastMovieId].getRating());
+            //System.out.println(i+" "+MAE);
             predictedValues++;
     }
             
@@ -397,6 +398,7 @@ for (i=0;i<=totalUsers;i++)
             if ((Users[i].getPrediction()<1) && (Users[i].getPrediction()!=Global_Vars.NO_PREDICTION))Users[i].setPrediction(1);                
                     
             MAE += Math.abs(Users[i].getPrediction()-userMovies[i][Users[i].lastMovieId].getRating());
+            //System.out.println(i+" "+MAE);
             predictedValues++;
     }
             

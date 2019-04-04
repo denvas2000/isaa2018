@@ -3,15 +3,19 @@
  * @author Dennis Vassilopoulos
  * Creation Date: 23/1/2018
  * 
- * This class defines all mathods used in computing all kind of similarities, 
+ * This class defines all methods used in computing all kind of similarities, 
  * Initially only one composite method was implemented, but during the implementation of
  * the project, rose the need to split the original method into several, district, and more
- * managable methods.
+ * manageable methods.
+ * 
+ * Ver 1.5:
+ * 
  */
 
 package phd;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 //import static phd.FN_Amazon_Video_Games.usersRatingSet;
@@ -39,7 +43,7 @@ for (i=0;i<=totalUsers;i++)
         if (k>UserList.size()) k=UserList.size();
         for (UserSimilarity io: UserList)
         {
-            System.out.print(io.FUser_Id+" "+io.SUser_Id+" "+io.Similarity+"<-->");
+            System.out.println(io.FUser_Id+" "+io.SUser_Id+" "+io.Similarity+"<-->");
         } //for io
         System.out.println();
     }//if 
@@ -52,7 +56,7 @@ for (i=0;i<=totalUsers;i++)
 /**
  * 
  * Compute_Positive-Similarity: Method to compute ONLY POSITIVE similarities among all neighbors. 
- * Accepts as imput the following variables
+ * Accepts as input the following variables
  * 
  * @param totalUsers
  * @param totalMovies
@@ -65,7 +69,7 @@ for (i=0;i<=totalUsers;i++)
 
 public static void Positive_Similarity (
 int totalUsers, 
-int totalMovies,
+int totalMovies,    //Never Used!!!
 List<UserSimilarity>[] userSim,
 User[] Users,
 UserMovie[][] userMovies,
@@ -86,6 +90,7 @@ double numeratorSimij, denominatorSimij;        //Numerator and Denominator of S
 double denominatorPartA, denominatorPartB;      //Denominator consists of two parts        
 double Similarity;
 double maxSimValue=Integer.MIN_VALUE, MinSimValue=Integer.MAX_VALUE;
+HashSet<Integer> commonRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
 HashSet<Integer> userRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
 
 //System.out.println("Similarity"+simBase);
@@ -95,8 +100,11 @@ for (i=0;i<=totalUsers;i++)
 for (i=0;i<=totalUsers-1;i++)
 {    
             
-    averageUI=Users[i].UserAverageRate();            
-    if ((Users[i].getMaxTimeStamp()-Users[i].getMinTimeStamp())>Global_Vars.MIN_TIMESPACE)
+    averageUI=Users[i].UserAverageRate();         
+    //System.out.println(i+" "+averageUI);
+    //System.out.println(i+" "+Users[i].MaxTimeStamp+" "+Users[i].MinTimeStamp+" "+Global_Vars.MIN_TIMESPACE);
+    //System.out.println(i+" "+Users[i].getMaxTimeStamp()+" "+Users[i].getMinTimeStamp()+" "+Global_Vars.MIN_TIMESPACE);
+    if ((Users[i].MaxTimeStamp-Users[i].MinTimeStamp)>Global_Vars.MIN_TIMESPACE)
        for (j=i+1;j<=totalUsers;j++)
        {
            
@@ -105,22 +113,33 @@ for (i=0;i<=totalUsers-1;i++)
 
             averageUJ=Users[j].UserAverageRate();
             tempMovies=0;
-                
-            //for (k=0;k<=totalMovies;k++)
+            //System.out.print("\nUsers:"+i+" "+j+" Items: ");
+            
             userRatingSet=usersRatingSet[i];
             for (int k: userRatingSet)
             {
-
+                //if (usersRatingSet[j].contains(k)) System.out.print(" "+k);                    ;
                 if (!(userMovies[i][k]==null) && !(userMovies[j][k]==null))
+                //if (!(userMovies[j][k]==null))                                //MAYBE FASTER
                 {
-                    
+
+                    //System.out.print(" "+k);                    
                     tempMovies++;
-                    if (FN_100K_OLD.WEIGHT_TYPE==1)
+                    if (Global_Vars.WEIGHT_TYPE==1)
                     {
-                        tempWeight=(double)(userMovies[i][k].Time_Stamp-Users[i].getMinTimeStamp())/(double)(Users[i].getMaxTimeStamp()-Users[i].getMinTimeStamp());
+                        /*System.out.println("CommonSet size:"+commonRatingSet.size());
+                        System.out.println("i:"+i+" j:"+j);
+                        System.out.println(" Time:"+userMovies[i][k].Time_Stamp);
+                        System.out.println(" Min:"+Users[i].getMinTimeStamp()+" Max"+Users[i].getMaxTimeStamp());*/
+                        tempWeight=(double)(userMovies[i][k].Time_Stamp-Users[i].MinTimeStamp)/(double)(Users[i].MaxTimeStamp-Users[i].MinTimeStamp);
                         userMovies[i][k].setWeight(tempWeight);   
-                        tempWeight=(double)(userMovies[j][k].Time_Stamp-Users[j].getMinTimeStamp())/(double)(Users[j].getMaxTimeStamp()-Users[j].getMinTimeStamp());
+                        //-System.out.print(i+" "+k+" "+tempWeight+"<->");
+                        
+                        tempWeight=(double)(userMovies[j][k].Time_Stamp-Users[j].MinTimeStamp)/(double)(Users[j].MaxTimeStamp-Users[j].MinTimeStamp);
                         userMovies[j][k].setWeight(tempWeight);   
+                        //-System.out.println(j+" "+k+" "+tempWeight+"<->");
+                        //System.out.println(userMovies[i][k].Time_Stamp+" "+Users[i].getMinTimeStamp()+" "+Users[i].getMaxTimeStamp());
+                        //System.out.println(userMovies[j][k].Time_Stamp+" "+Users[j].getMinTimeStamp()+" "+Users[j].getMaxTimeStamp());
                     }
                     else
                     {
@@ -136,7 +155,10 @@ for (i=0;i<=totalUsers-1;i++)
                 }
                   
             }//for k
-                
+            
+
+            //System.out.println("i:"+i+" j:"+j);
+            commonRatingSet.clear();
             denominatorSimij= denominatorPartA * denominatorPartB;
             Similarity=(double)(numeratorSimij/Math.sqrt(denominatorSimij));
                 
@@ -157,7 +179,7 @@ for (i=0;i<=totalUsers-1;i++)
 
                 } 
             }    
-        }//for i
+        }//for i//for i
 
 }
 //System.out.println("max:"+absMaxTimeStamp+" min:"+absMinTimeStamp);
@@ -207,7 +229,7 @@ for (i=0;i<=totalUsers-1;i++)
 {    
             
     averageUI=Users[i].UserInvertedAverageRating();            
-    if ((Users[i].getMaxTimeStamp()-Users[i].getMinTimeStamp())>FN_100K_OLD.MIN_TIMESPACE)
+    if ((Users[i].getMaxTimeStamp()-Users[i].getMinTimeStamp())>Global_Vars.MIN_TIMESPACE)
        for (j=i+1;j<=totalUsers;j++)
        {
            
@@ -226,12 +248,16 @@ for (i=0;i<=totalUsers-1;i++)
                 {
                     
                     tempMovies++;
-                    if (FN_100K_OLD.WEIGHT_TYPE==1)
+                    if (Global_Vars.WEIGHT_TYPE==1)
                     {
                         tempWeight=(double)(userMovies[i][k].Time_Stamp-Users[i].getMinTimeStamp())/(double)(Users[i].getMaxTimeStamp()-Users[i].getMinTimeStamp());
                         userMovies[i][k].setWeight(tempWeight);   
+                        //System.out.print(j+" "+k+" "+tempWeight+"<->");
                         tempWeight=(double)(userMovies[j][k].Time_Stamp-Users[j].getMinTimeStamp())/(double)(Users[j].getMaxTimeStamp()-Users[j].getMinTimeStamp());
                         userMovies[j][k].setWeight(tempWeight);   
+                        //System.out.print(j+" "+k+" "+tempWeight+"<->");
+                        //System.out.println(userMovies[i][k].Time_Stamp+" "+Users[i].getMinTimeStamp()+" "+Users[i].getMaxTimeStamp());
+                        //System.out.println(userMovies[j][k].Time_Stamp+" "+Users[j].getMinTimeStamp()+" "+Users[j].getMaxTimeStamp());                        
                     }
                     else
                     {

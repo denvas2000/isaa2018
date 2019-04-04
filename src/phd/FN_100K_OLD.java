@@ -243,7 +243,7 @@ System.out.println("totalUsers:"+totalUsers+"totalMovies:"+totalMovies);
 //            CALCULATE SIMPLE COLLABORATIVE FILTERING SIMILARITIES FOR BOTH NNs and KNs
 
         
-try(FileWriter outExcel = new FileWriter( "results_MovieLens100K_Old.txt" )) {
+try(FileWriter outExcel = new FileWriter( "Results_Array/results_MovieLens100K_Old.txt" )) {
 
     //Export File HEADINGS
     
@@ -257,7 +257,7 @@ try(FileWriter outExcel = new FileWriter( "results_MovieLens100K_Old.txt" )) {
     
     //Print_to_File(outExcel,1);            
     
-    try(FileWriter out = new FileWriter( "Time_MovieLens100K_Old.txt" ))            //Open file for writing
+    try(FileWriter out = new FileWriter( "Timings_Array/Time_MovieLens100K_Old.txt" ))            //Open file for writing
     {
 
         //All parameters used fot the simulation process

@@ -69,7 +69,7 @@ public class FN_1M_OLD extends Global_Vars{
         
 //Movielens 1M_Old
 static final int MAX_USERS=6045;        //Maximum Users the program can handle
-static final int MAX_MOVIES=3955;       //Maximum Movies the program can handle
+static final int MAX_MOVIES=3715;       //Maximum Movies the program can handle
 static final int TOTAL_RATINGS=1000209;
 
 static User[] users = new User[MAX_USERS];        
@@ -153,9 +153,15 @@ firstTime=System.currentTimeMillis();
 startTime=System.currentTimeMillis();
 totals=Initialization.Data_Initialisation_1M_OLD("MovieLens_1M_Old.txt", users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);
 initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
+System.out.println("Size after initialization:"+usersRatingSet.length);
 totalUsers=totals[0];totalMovies=totals[1];
+//System.out.println("totalUsers:"+totalUsers+"totalMovies:"+totalMovies); 
+//Phd_Utils.Print_UserRatings(totalUsers, totalMovies, users, userMovies);
+
 Initialization.Compute_Inverse_Data(totalUsers, totalMovies, users, userMovies);
-System.out.println("totalUsers:"+totalUsers+"totalMovies:"+totalMovies); 
+System.out.println("Users from 0 to:"+totalUsers+" Movies from 1 to:"+totalMovies); 
+//Phd_Utils.Print_UserRatings(totalUsers, totalMovies, users, userMovies, usersRatingSet);
+//Phd_Utils.Print_UserItems(totalUsers, totalMovies, users, userMovies);
 
 // -------- End reading data file. All data are in memory (Tables) ----------- 
 
@@ -168,7 +174,7 @@ System.out.println("totalUsers:"+totalUsers+"totalMovies:"+totalMovies);
 //            CALCULATE SIMPLE COLLABORATIVE FILTERING SIMILARITIES FOR BOTH NNs and KNs
 
         
-try(FileWriter outExcel = new FileWriter( "results_Movielens_1M_OLD.txt" )) {
+try(FileWriter outExcel = new FileWriter( "Results_Array/results_Movielens_1M_OLD.txt" )) {
 
     //Export File HEADINGS
     
@@ -182,7 +188,7 @@ try(FileWriter outExcel = new FileWriter( "results_Movielens_1M_OLD.txt" )) {
     
     //Print_to_File(outExcel,1);            
     
-    try(FileWriter out = new FileWriter( "Time_Movielens_1M_old.txt" ))            //Open file for writing
+    try(FileWriter out = new FileWriter( "Timings_Array/Time_Movielens_1M_OLD.txt" ))            //Open file for writing
     {
 
         //All parameters used fot the simulation process
@@ -218,7 +224,7 @@ try(FileWriter outExcel = new FileWriter( "results_Movielens_1M_OLD.txt" )) {
             simTime3=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
             Similarities.Inverted_Similarity(totalUsers, totalMovies, INVUS, users, userMovies, usersRatingSet, (double)m/100, n, absMinTimeStamp, absMaxTimeStamp);
-            simTime3=startTime-System.currentTimeMillis();
+            simTime4=startTime-System.currentTimeMillis();
 
             //System.out.println("aaa");
             //Similarities.Print_Similarities(totalUsers, INVUS);
@@ -246,9 +252,11 @@ try(FileWriter outExcel = new FileWriter( "results_Movielens_1M_OLD.txt" )) {
             Phd_Utils.Strict_Similarities(totalUsers, NO3RUS, users, userMovies);
             Phd_Utils.Strict_Similarities(totalUsers, INVUS, users, userMovies);     
             strictTime=startTime-System.currentTimeMillis();
+            
             //System.out.println("ccc");
             //Similarities.Print_Similarities(totalUsers, INVUS);
             //Similarities.Print_Similarities(totalUsers, US);
+            
             /* 
                 CALCULATE USER'S PREDICTION FOR LAST MOVIE FROM NN
             */
@@ -301,7 +309,7 @@ try(FileWriter outExcel = new FileWriter( "results_Movielens_1M_OLD.txt" )) {
             out.write("\r\n");
             out.write("Calculate time to find Similarities (NO3 FN): "+Long.toString(simTime3));
             out.write("\r\n");
-            out.write("Calculate time to find Similarities (Dennis FN): "+Long.toString(simTime3));
+            out.write("Calculate time to find Similarities (Dennis FN): "+Long.toString(simTime4));
             out.write("\r\n");
             out.write("Sort Similarity arrays for all users: "+Long.toString(sortTime));
             out.write("\r\n");
