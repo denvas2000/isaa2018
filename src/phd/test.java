@@ -24,13 +24,35 @@ public static int[] den2 (int i){
  
 }
 
+public static void SetTest(){
+HashSet<Integer> aSet =new HashSet<Integer>();
+int k;    
+
+aSet.add(1);aSet.add(2);aSet.add(3);aSet.add(3);
+//iterate over set
+for (int s: aSet) {
+      System.out.println("Number = " + s);
+}
+k=3;
+
+if (aSet.contains(k))
+System.out.println("AEK OLE");
+else
+    aSet.add(k);
+
+
+for (int s: aSet) {
+      System.out.println("Number = " + s);
+}
+    
+}
 public static void main(String[] args) {
 
 int k;    
 String a="aaa"+5+"aaa";
 int i=2;
 Boolean input = Boolean.valueOf("1>2");
-HashSet<Integer> aSet =new HashSet<Integer>();
+
 
 /*
 if (input) {
@@ -66,22 +88,7 @@ k=den2(1)[1];
 System.out.println(k);
 */
 
-aSet.add(1);aSet.add(2);aSet.add(3);aSet.add(3);
-//iterate over set
-for (int s: aSet) {
-      System.out.println("Number = " + s);
-}
-k=3;
-
-if (aSet.contains(k))
-System.out.println("AEK OLE");
-else
-    aSet.add(k);
-
-
-for (int s: aSet) {
-      System.out.println("Number = " + s);
-}
+//SetTest();
 
 }
 

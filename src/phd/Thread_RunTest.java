@@ -1,12 +1,13 @@
 package phd;
 
-//THREAD
+//RUNNABLE EXAMPLE
+ 
 /*
-class ThreadDemo extends Thread {
-   private Thread t;
-   private String threadName;
+class RunDemo  implements Runnable {
+   public Thread t;
+   public String threadName;
    
-   ThreadDemo( String name) {
+   RunDemo( String name) {
       threadName = name;
       System.out.println("Creating " +  threadName );
    }
@@ -17,7 +18,7 @@ class ThreadDemo extends Thread {
          for(int i = 4; i > 0; i--) {
             System.out.println("Thread: " + threadName + ", " + i);
             // Let the thread sleep for a while.
-            Thread.sleep(10000);
+            Thread.sleep(50);
          }
       } catch (InterruptedException e) {
          System.out.println("Thread " +  threadName + " interrupted.");
@@ -34,35 +35,38 @@ class ThreadDemo extends Thread {
    }
 }
 
-public class Thread_Test {
 
-   public static void main(String args[]) {
-      ThreadDemo T1 = new ThreadDemo( "Thread-1");
-      T1.start();
-      ThreadDemo T2 = new ThreadDemo( "Thread-2");
-      T2.start();
+
+public class Thread_RunTest {
+
+    public static void main(String args[]) {
+      RunDemo R1 = new RunDemo( "Thread-1");
+      R1.start();
       
+      RunDemo R2 = new RunDemo( "Thread-2");
+      R2.start();
     try {
         System.out.println("Waiting for threads to finish.");
-        T1.join();
-        T2.join();
+        R1.t.join();
+        R2.t.join();
     } catch (InterruptedException e) {
       System.out.println("Main thread Interrupted");
     }      
       System.out.println("AAAAAA");
-   }   
-}
+   }//main   
+
+   }//Thread_RunTest   
+
 */
 
-class ThreadDemo extends Thread {
-//   private Thread t;
+class RunDemo  implements Runnable {
    private String threadName;
    private int loopbound;
    
-   ThreadDemo( String name, int bound) {
+   RunDemo( String name, int bound) {
       threadName = name;
       loopbound=bound;
-//      System.out.println("Creating " +  threadName );
+      //System.out.println("Creating " +  threadName );
    }
    
    public void run() {
@@ -71,32 +75,33 @@ class ThreadDemo extends Thread {
             System.out.println("Thread: " + threadName + ", " + i);
          }
       System.out.println("Thread " +  threadName + " exiting.");
-   }
+   } //run
    
-//   public void start () {
-//      System.out.println("Starting " +  threadName );
-//      if (t == null) {
-//         t = new Thread (this, threadName);
-//         t.start ();
-//      }
-//   }
-}
+   
+}//RunDemo
 
-public class Thread_Test {
+public class Thread_RunTest {
 
-   public static void main(String args[]) {
-      ThreadDemo T1 = new ThreadDemo( "Thread-1",20);
-      T1.start();
-      ThreadDemo T2 = new ThreadDemo( "Thread-2",10);
-      T2.start();
+public static void main(String args[]) {
+
+RunDemo R1 = new RunDemo("Thread-1",10);
+RunDemo R2 = new RunDemo("Thread-2",5);
+
+Thread t1 = new Thread( R1,"t1");
+t1.start();
       
-    try {
+Thread t2 = new Thread( R2,"t2");
+t2.start();
+
+try {
         System.out.println("Waiting for threads to finish.");
-        T1.join();
-        T2.join();
-    } catch (InterruptedException e) {
+        t1.join();
+        t2.join();
+} 
+catch (InterruptedException e) {
       System.out.println("Main thread Interrupted");
-    }      
+}      
       System.out.println("AAAAAA");
-   }   
-}
+}//main   
+
+}//Thread_RunTest   

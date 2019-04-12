@@ -50,7 +50,7 @@ for (i=0;i<=totalUsers;i++)
     {   
         while (itr.hasNext())
         {
-            //io = new UserSimilarity();
+            //io = new UserSimilarity();    //No need. Increases Memory usage
             io = itr.next();
             if (userMovies[io.SUser_Id][lastMovie]==null)
                 itr.remove();

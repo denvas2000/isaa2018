@@ -94,6 +94,8 @@ HashSet<Integer> commonRatingSet = new HashSet<>();   //Set containg for a speci
 HashSet<Integer> userRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
 
 //System.out.println("Similarity"+simBase);
+
+// Initialize User Similarity List
 for (i=0;i<=totalUsers;i++) 
     userSim[i]=new ArrayList<>();
 
