@@ -177,7 +177,7 @@ try {   //Read Files. Initiate tables
             // Read the numbers in line, store them in Nums_Line, max numbers 4 (or the rest are ignored)
             while((Scan_Line.hasNext()) && (Nums_Per_Line_Count<4)) 
             {
-                            //System.out.println("AAA");
+                //System.out.println("AAA");
                 Nums_Line[Nums_Per_Line_Count++]=Scan_Line.nextInt();
                 //System.out.println("BBB");
             }

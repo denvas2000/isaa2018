@@ -10,6 +10,10 @@
  * 
  * Ver 1.5:
  * 
+ * Introduction of threads improves execution performance. 
+ * 2 Threads by a factor of 20% approximately
+ * 3 Threads by a factor of 20-25% approximately
+ * 4 Threads by a factor seems to offer no gain at first 3-4 repetitions, then offers an extra 20% gain
  */
 
 package phd;
@@ -40,7 +44,7 @@ for (i=0;i<=totalUsers;i++)
     //System.out.println(UserList.size());
     if (UserList.size()>0) 
     {   
-        if (k>UserList.size()) k=UserList.size();
+        //if (k>UserList.size()) k=UserList.size();
         for (UserSimilarity io: UserList)
         {
             System.out.println(io.FUser_Id+" "+io.SUser_Id+" "+io.Similarity+"<-->");
@@ -51,7 +55,6 @@ for (i=0;i<=totalUsers;i++)
 }//for i
 
 }//END Print_Similarities
-
 
 /**
  * 
@@ -67,9 +70,10 @@ for (i=0;i<=totalUsers;i++)
  
  */
 
-public static void Positive_Similarity (
-int totalUsers, 
-int totalMovies,    //Never Used!!!
+public static void Positive_Similarity_Parallel (
+int low, 
+int upper,    
+int totalUsers,
 List<UserSimilarity>[] userSim,
 User[] Users,
 UserMovie[][] userMovies,
@@ -94,12 +98,16 @@ HashSet<Integer> commonRatingSet = new HashSet<>();   //Set containg for a speci
 HashSet<Integer> userRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
 
 //System.out.println("Similarity"+simBase);
+//System.out.println("low:"+low+" upper:"+upper);
+System.out.println("US:"+userSim.length);
 
 // Initialize User Similarity List
-for (i=0;i<=totalUsers;i++) 
-    userSim[i]=new ArrayList<>();
+//for (i=0;i<=totalUsers;i++) 
+//for (i=low;i<=upper;i++) 
+//    userSim[i]=new ArrayList<>();
 
-for (i=0;i<=totalUsers-1;i++)
+//for (i=0;i<=totalUsers-1;i++)
+for (i=low;i<=upper;i++)
 {    
             
     averageUI=Users[i].UserAverageRate();         
@@ -107,6 +115,7 @@ for (i=0;i<=totalUsers-1;i++)
     //System.out.println(i+" "+Users[i].MaxTimeStamp+" "+Users[i].MinTimeStamp+" "+Global_Vars.MIN_TIMESPACE);
     //System.out.println(i+" "+Users[i].getMaxTimeStamp()+" "+Users[i].getMinTimeStamp()+" "+Global_Vars.MIN_TIMESPACE);
     if ((Users[i].MaxTimeStamp-Users[i].MinTimeStamp)>Global_Vars.MIN_TIMESPACE)
+       //for (j=i+1;j<=totalUsers;j++)
        for (j=i+1;j<=totalUsers;j++)
        {
            
@@ -175,7 +184,147 @@ for (i=0;i<=totalUsers-1;i++)
             
                 if (Similarity>=simBase)    //Only Positive Similarities are Considered
                 {
-                        //System.out.println(Similarity+"Den");
+                        //if (i==3019) {System.out.println(Similarity+"Den");
+                        //System.out.println(" "+i+" "+j);}
+                        userSim[i].add(new UserSimilarity(i,j,Similarity,1));
+                        userSim[j].add(new UserSimilarity(j,i,Similarity,1));
+
+                } 
+                
+            }    
+            
+       } //for j
+    
+} //for i
+
+//System.out.println("max:"+absMaxTimeStamp+" min:"+absMinTimeStamp);
+} //END OF METHOD Positive_Similarity
+
+/**
+ * 
+ * Compute_Positive-Similarity: Method to compute ONLY POSITIVE similarities among all neighbors. 
+ * Accepts as input the following variables
+ * 
+ * @param totalUsers
+ * @param totalMovies
+ * @param userSim
+ * @param Users
+ * @param userMovies
+ * @param usersRatingSet
+ 
+ */
+
+public static void Positive_Similarity (
+int totalUsers, 
+int totalMovies,
+List<UserSimilarity>[] userSim,
+User[] Users,
+UserMovie[][] userMovies,
+HashSet<Integer>[] usersRatingSet,
+double simBase,
+int commonMovies
+//int absMinTimeStamp,
+//int absMaxTimeStamp
+)
+    
+{
+        
+int    i, j;
+double tempWeight;
+int    tempMovies;
+double averageUI, averageUJ;                    //Hold average rating of user i and j, respectively
+double numeratorSimij, denominatorSimij;        //Numerator and Denominator of Similarity (Pearson) function.
+double denominatorPartA, denominatorPartB;      //Denominator consists of two parts        
+double Similarity;
+double maxSimValue=Integer.MIN_VALUE, MinSimValue=Integer.MAX_VALUE;
+HashSet<Integer> commonRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
+HashSet<Integer> userRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
+
+//System.out.println("Similarity"+simBase);
+//System.out.println("totalusers: "+totalUsers);
+// Initialize User Similarity List
+for (i=0;i<=totalUsers;i++) 
+    userSim[i]=new ArrayList<>();
+
+for (i=0;i<=totalUsers-1;i++)
+{    
+            
+    averageUI=Users[i].UserAverageRate();         
+    //System.out.println(i+" "+averageUI);
+    //System.out.println(i+" "+Users[i].MaxTimeStamp+" "+Users[i].MinTimeStamp+" "+Global_Vars.MIN_TIMESPACE);
+    //System.out.println(i+" "+Users[i].getMaxTimeStamp()+" "+Users[i].getMinTimeStamp()+" "+Global_Vars.MIN_TIMESPACE);
+    if ((Users[i].MaxTimeStamp-Users[i].MinTimeStamp)>Global_Vars.MIN_TIMESPACE)
+       //for (j=i+1;j<=totalUsers;j++)
+       for (j=i+1;j<=totalUsers;j++)
+       {
+           
+            numeratorSimij=0.0;                    //Initializing variables used in computing similarity
+            denominatorPartA=0.0;denominatorPartB=0.0;
+
+            averageUJ=Users[j].UserAverageRate();
+            tempMovies=0;
+            //System.out.print("\nUsers:"+i+" "+j+" Items: ");
+            
+            userRatingSet=usersRatingSet[i];
+            for (int k: userRatingSet)
+            {
+                //if (usersRatingSet[j].contains(k)) System.out.print(" "+k);                    ;
+                if (!(userMovies[i][k]==null) && !(userMovies[j][k]==null))
+                //if (!(userMovies[j][k]==null))                                //MAYBE FASTER
+                {
+
+                    //System.out.print(" "+k);                    
+                    tempMovies++;
+                    if (Global_Vars.WEIGHT_TYPE==1)
+                    {
+                        /*System.out.println("CommonSet size:"+commonRatingSet.size());
+                        System.out.println("i:"+i+" j:"+j);
+                        System.out.println(" Time:"+userMovies[i][k].Time_Stamp);
+                        System.out.println(" Min:"+Users[i].getMinTimeStamp()+" Max"+Users[i].getMaxTimeStamp());*/
+                        tempWeight=(double)(userMovies[i][k].Time_Stamp-Users[i].MinTimeStamp)/(double)(Users[i].MaxTimeStamp-Users[i].MinTimeStamp);
+                        userMovies[i][k].setWeight(tempWeight);   
+                        //-System.out.print(i+" "+k+" "+tempWeight+"<->");
+                        
+                        tempWeight=(double)(userMovies[j][k].Time_Stamp-Users[j].MinTimeStamp)/(double)(Users[j].MaxTimeStamp-Users[j].MinTimeStamp);
+                        userMovies[j][k].setWeight(tempWeight);   
+                        //-System.out.println(j+" "+k+" "+tempWeight+"<->");
+                        //System.out.println(userMovies[i][k].Time_Stamp+" "+Users[i].getMinTimeStamp()+" "+Users[i].getMaxTimeStamp());
+                        //System.out.println(userMovies[j][k].Time_Stamp+" "+Users[j].getMinTimeStamp()+" "+Users[j].getMaxTimeStamp());
+                    }
+                    else
+                    {
+                        userMovies[i][k].setWeight(1);   
+                        userMovies[j][k].setWeight(1);   
+                    }
+                    
+                    
+                    numeratorSimij += (userMovies[i][k].getRating()-averageUI)*(userMovies[j][k].getRating()-averageUJ)*userMovies[i][k].getWeight()*userMovies[j][k].getWeight();
+                    denominatorPartA += (userMovies[i][k].getRating()-averageUI)*(userMovies[i][k].getRating()-averageUI);
+                    denominatorPartB += (userMovies[j][k].getRating()-averageUJ)*(userMovies[j][k].getRating()-averageUJ);
+
+                }
+                  
+            }//for k
+            
+
+            //System.out.println("i:"+i+" j:"+j);
+            commonRatingSet.clear();
+            denominatorSimij= denominatorPartA * denominatorPartB;
+            Similarity=(double)(numeratorSimij/Math.sqrt(denominatorSimij));
+                
+            //find min/max similarity values
+            if (MinSimValue>Similarity) MinSimValue=Similarity;
+            else
+            if (maxSimValue<Similarity) maxSimValue=Similarity;
+                
+            
+            //At least "commonMovies" common ratings
+            if (tempMovies>commonMovies) {
+            
+                if (Similarity>=simBase)    //Only Positive Similarities are Considered
+                {
+                        //if (i==3019) {System.out.println(Similarity+"Den");
+                        //System.out.println(" "+i+" "+j);}
                         userSim[i].add(new UserSimilarity(i,j,Similarity,1));
                         userSim[j].add(new UserSimilarity(j,i,Similarity,1));
 

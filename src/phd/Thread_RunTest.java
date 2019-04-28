@@ -2,7 +2,7 @@ package phd;
 
 //RUNNABLE EXAMPLE
  
-/*
+
 class RunDemo  implements Runnable {
    public Thread t;
    public String threadName;
@@ -18,7 +18,7 @@ class RunDemo  implements Runnable {
          for(int i = 4; i > 0; i--) {
             System.out.println("Thread: " + threadName + ", " + i);
             // Let the thread sleep for a while.
-            Thread.sleep(50);
+            Thread.sleep(0);
          }
       } catch (InterruptedException e) {
          System.out.println("Thread " +  threadName + " interrupted.");
@@ -57,7 +57,7 @@ public class Thread_RunTest {
 
    }//Thread_RunTest   
 
-*/
+/*
 
 class RunDemo  implements Runnable {
    private String threadName;
@@ -101,7 +101,10 @@ try {
 catch (InterruptedException e) {
       System.out.println("Main thread Interrupted");
 }      
-      System.out.println("AAAAAA");
+
+System.out.println("AAAAAA");
+
 }//main   
 
 }//Thread_RunTest   
+*/

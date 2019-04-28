@@ -97,6 +97,6 @@ public class Thread_Test {
     } catch (InterruptedException e) {
       System.out.println("Main thread Interrupted");
     }      
-      System.out.println("AAAAAA");
+    System.out.println("AAAAAA");
    }   
 }

@@ -132,7 +132,9 @@ int NO3TotalPredictedValues;
 int temp_prediction;                                //values holding current (rev)predictions
 int temp_rev_prediction;
 int temp_no3_rev_prediction;
-        
+
+int lowbound, upperbound;
+
 long firstTime, totalTime, startTime, initTime, simTime1, simTime2, simTime3, simTime4, sortTime, strictTime, predTime1, predTime2, predTime3, predTime4, predTime5;
         
 int i,j,k, l, m, n, o, p, q;
@@ -217,13 +219,13 @@ try(FileWriter outExcel = new FileWriter( "Results_Array/results_Movielens_1M_OL
             Similarities.Positive_Similarity(totalUsers, totalMovies, US, users, userMovies, usersRatingSet, (double)l/100, n); 
             simTime1=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Compute_Similarity(totalUsers, totalMovies, RUS, users, userMovies, usersRatingSet, 0, (double)-m/100, n);
+            //Similarities.Compute_Similarity(totalUsers, totalMovies, RUS, users, userMovies, usersRatingSet, 0, (double)-m/100, n);
             simTime2=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Compute_Similarity(totalUsers, totalMovies, NO3RUS, users, userMovies, usersRatingSet, 2, (double)-m/100, n);
+            //Similarities.Compute_Similarity(totalUsers, totalMovies, NO3RUS, users, userMovies, usersRatingSet, 2, (double)-m/100, n);
             simTime3=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Inverted_Similarity(totalUsers, totalMovies, INVUS, users, userMovies, usersRatingSet, (double)m/100, n, absMinTimeStamp, absMaxTimeStamp);
+            //Similarities.Inverted_Similarity(totalUsers, totalMovies, INVUS, users, userMovies, usersRatingSet, (double)m/100, n, absMinTimeStamp, absMaxTimeStamp);
             simTime4=startTime-System.currentTimeMillis();
 
             //System.out.println("aaa");
@@ -236,9 +238,9 @@ try(FileWriter outExcel = new FileWriter( "Results_Array/results_Movielens_1M_OL
             for (i=0;i<=totalUsers;i++)
             {
                 Collections.sort(US[i],Collections.reverseOrder());
-                Collections.sort(RUS[i]);
-                Collections.sort(NO3RUS[i]);
-                Collections.sort(INVUS[i],Collections.reverseOrder());
+                //Collections.sort(RUS[i]);
+                //Collections.sort(NO3RUS[i]);
+                //Collections.sort(INVUS[i],Collections.reverseOrder());
             }
             //System.out.println("bbb");
             //Similarities.Print_Similarities(totalUsers, INVUS);
@@ -248,9 +250,9 @@ try(FileWriter outExcel = new FileWriter( "Results_Array/results_Movielens_1M_OL
             //Keep only Neighbors that have rate LastMovieID
             startTime=System.currentTimeMillis();
             Phd_Utils.Strict_Similarities(totalUsers, US, users, userMovies);
-            Phd_Utils.Strict_Similarities(totalUsers, RUS, users, userMovies);
-            Phd_Utils.Strict_Similarities(totalUsers, NO3RUS, users, userMovies);
-            Phd_Utils.Strict_Similarities(totalUsers, INVUS, users, userMovies);     
+            //Phd_Utils.Strict_Similarities(totalUsers, RUS, users, userMovies);
+            //Phd_Utils.Strict_Similarities(totalUsers, NO3RUS, users, userMovies);
+            //Phd_Utils.Strict_Similarities(totalUsers, INVUS, users, userMovies);     
             strictTime=startTime-System.currentTimeMillis();
             
             //System.out.println("ccc");
@@ -265,22 +267,22 @@ try(FileWriter outExcel = new FileWriter( "Results_Array/results_Movielens_1M_OL
             startTime=System.currentTimeMillis();                    //New Timer
             Assign_Values(Predictions.Positive_Prediction(totalUsers, totalMovies, US, users, userMovies, p),1);
             predTime1=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings 
-
+            //Predictions.Print_Predictions(totalUsers, users);
             startTime=System.currentTimeMillis();                    //New Timer
-            Assign_Values(Predictions.Compute_Prediction(totalUsers, totalMovies, RUS, users, userMovies, 1, p),2);            
+            //Assign_Values(Predictions.Compute_Prediction(totalUsers, totalMovies, RUS, users, userMovies, 1, p),2);            
             predTime2=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings         
 
             startTime=System.currentTimeMillis();                    //New Timer
-            Assign_Values(Predictions.Compute_Prediction(totalUsers, totalMovies, NO3RUS, users, userMovies, 2, p),3);                 
+            //Assign_Values(Predictions.Compute_Prediction(totalUsers, totalMovies, NO3RUS, users, userMovies, 2, p),3);                 
             predTime3=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings         
 
             startTime=System.currentTimeMillis();                    //New Timer
-            Assign_Values(Predictions.Inverted_Prediction(totalUsers, totalMovies, INVUS, users, userMovies, p),4);     
+            //Assign_Values(Predictions.Inverted_Prediction(totalUsers, totalMovies, INVUS, users, userMovies, p),4);     
             //System.out.println(negAverMAE+" "+negAverPredictedValues);            
             predTime4=startTime-System.currentTimeMillis();    
         
             startTime=System.currentTimeMillis();                    //New Timer
-            Assign_Values(Predictions.Combined_Prediction(totalUsers, totalMovies, US, INVUS, COMBINE, users, userMovies, p),5);
+            //Assign_Values(Predictions.Combined_Prediction(totalUsers, totalMovies, US, INVUS, COMBINE, users, userMovies, p),5);
             predTime5=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings 
 
             totalTime=firstTime-System.currentTimeMillis(); 

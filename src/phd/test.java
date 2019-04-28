@@ -50,9 +50,10 @@ public static void main(String[] args) {
 
 int k;    
 String a="aaa"+5+"aaa";
-int i=2;
+int i=21;
 Boolean input = Boolean.valueOf("1>2");
 
+for (k=i+1;k<=21;k++) System.out.println("Denis");
 
 /*
 if (input) {
