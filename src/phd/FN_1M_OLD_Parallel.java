@@ -158,7 +158,7 @@ int[] totals = new int[2];
 
 firstTime=System.currentTimeMillis();
 startTime=System.currentTimeMillis();
-totals=Initialization.Data_Initialisation_1M_OLD("MovieLens_1M_Old.txt", users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);
+totals=Initialization.Data_Initialisation_1M_OLD("/_PHD/02.Datasets_Original_and_Final_Files/02.Movielens_1M_Old/01.Array/MovieLens_1M_Old.txt", users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);
 initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
 System.out.println("Size after initialization:"+usersRatingSet.length);
 totalUsers=totals[0];totalMovies=totals[1];
@@ -181,7 +181,7 @@ System.out.println("Users from 0 to:"+totalUsers+" Movies from 1 to:"+totalMovie
 //            CALCULATE SIMPLE COLLABORATIVE FILTERING SIMILARITIES FOR BOTH NNs and KNs
 
         
-try(FileWriter outExcel = new FileWriter( "Results_Array/results_Movielens_1M_OLD_Par.txt" )) {
+try(FileWriter outExcel = new FileWriter( "phd/Results_Array/results_Movielens_1M_OLD_Par.txt" )) {
 
     //Export File HEADINGS
     
@@ -195,7 +195,7 @@ try(FileWriter outExcel = new FileWriter( "Results_Array/results_Movielens_1M_OL
     
     //Print_to_File(outExcel,1);            
     
-    try(FileWriter out = new FileWriter( "Timings_Array/Time_Movielens_1M_OLD_Par.txt" ))            //Open file for writing
+    try(FileWriter out = new FileWriter( "phd/Timings_Array/Time_Movielens_1M_OLD_Par.txt" ))            //Open file for writing
     {
 
         //All parameters used fot the simulation process
@@ -233,7 +233,7 @@ try(FileWriter outExcel = new FileWriter( "Results_Array/results_Movielens_1M_OL
             for (i=0;i<=THREADS-1;i++)
             {
                 lowbound=upperbound+1;upperbound=(int)((i+1)*totalUsers/THREADS);
-                PS[i]= new Parallel_Sim(lowbound, upperbound, totalUsers, US, users, userMovies, usersRatingSet, (double)l/100, n);
+                PS[i]= new Parallel_Sim(1,lowbound, upperbound, totalUsers, US, users, userMovies, usersRatingSet, 10, (double)l/100, n);
                 threadPool[i]= new Thread(PS[i],"t"+String.valueOf(i));
             }
 

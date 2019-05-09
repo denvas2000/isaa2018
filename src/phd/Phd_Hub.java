@@ -230,7 +230,7 @@ String outFileTiming = new String();
 
 
 
-datasetSelection=2;
+datasetSelection=3;
 switch(datasetSelection) {
     case 1: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/01.Movielens_100k_old/01.Array/Movielens_100K_OLD_Sorted.txt";
             MAX_USERS=945;MAX_MOVIES=1690;
@@ -257,7 +257,20 @@ switch(datasetSelection) {
             totals=Initialization.Data_Initialisation_1M_OLD(datasetFile, users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);
             initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
             totalUsers=totals[0];totalMovies=totals[1];            
-            break;            
+            break;         
+    case 3: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/03.Amazon_Video_Games/ratings_Video_Games_Final.tab";
+            MAX_USERS=8060;MAX_MOVIES=26740;
+            users=new User[MAX_USERS];
+            usersRatingSet  = new HashSet[MAX_USERS]; 
+            userMovies = new UserMovie[MAX_USERS][MAX_MOVIES];
+            outFileResults="phd/Results_Array/Results_Amazon_VG_HUB.txt";
+            outFileTiming="phd/Timings_Array/Time_Results_Amazon_VG_HUB.txt";
+            firstTime=System.currentTimeMillis();
+            startTime=System.currentTimeMillis();
+            totals=Initialization.Data_Initialisation_Amazon_Video_Games(datasetFile, users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);
+            initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
+            totalUsers=totals[0];totalMovies=totals[1];            
+            break;                
 }//switch
 
 
@@ -318,28 +331,27 @@ try(FileWriter outExcel = new FileWriter( outFileResults )) {
             Similarities.Positive_Similarity(totalUsers, totalMovies, US = new List[MAX_USERS], users, userMovies, usersRatingSet, (double)l/100, n); 
             simTime1=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Compute_Similarity(totalUsers, totalMovies, RUS = new List[MAX_USERS], users, userMovies, usersRatingSet, 0, (double)-m/100, n);
+            //Similarities.Compute_Similarity(totalUsers, totalMovies, RUS = new List[MAX_USERS], users, userMovies, usersRatingSet, 0, (double)-m/100, n);
             simTime2=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Compute_Similarity(totalUsers, totalMovies, NO3RUS = new List[MAX_USERS], users, userMovies, usersRatingSet, 2, (double)-m/100, n);
+            //Similarities.Compute_Similarity(totalUsers, totalMovies, NO3RUS = new List[MAX_USERS], users, userMovies, usersRatingSet, 2, (double)-m/100, n);
             simTime3=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities.Inverted_Similarity(totalUsers, totalMovies, INVUS = new List[MAX_USERS], users, userMovies, usersRatingSet, (double)m/100, n, absMinTimeStamp, absMaxTimeStamp);
+            //Similarities.Inverted_Similarity(totalUsers, totalMovies, INVUS = new List[MAX_USERS], users, userMovies, usersRatingSet, (double)m/100, n, absMinTimeStamp, absMaxTimeStamp);
             simTime4=startTime-System.currentTimeMillis();
 
             //System.out.println("aaa");
             //Similarities.Print_Similarities(totalUsers, INVUS);
-            //Similarities.Print_Similarities(totalUsers, US);
-            //For each User there is a sorted array with all its NN/FN calculated
 
+            //For each User there is a sorted array with all its NN/FN calculated
             startTime=System.currentTimeMillis();           //Set new timer
             
             for (i=0;i<=totalUsers;i++)
             {
                 Collections.sort(US[i],Collections.reverseOrder());
-                Collections.sort(RUS[i]);
-                Collections.sort(NO3RUS[i]);
-                Collections.sort(INVUS[i],Collections.reverseOrder());
+                //Collections.sort(RUS[i]);
+                //Collections.sort(NO3RUS[i]);
+                //Collections.sort(INVUS[i],Collections.reverseOrder());
             }
             //System.out.println("bbb");
             //Similarities.Print_Similarities(totalUsers, INVUS);
@@ -350,9 +362,9 @@ try(FileWriter outExcel = new FileWriter( outFileResults )) {
             startTime=System.currentTimeMillis();
             //Keep only Neighbors that have rate LastMovieID
             Phd_Utils.Strict_Similarities(totalUsers, US, users, userMovies);
-            Phd_Utils.Strict_Similarities(totalUsers, RUS, users, userMovies);
-            Phd_Utils.Strict_Similarities(totalUsers, NO3RUS, users, userMovies);
-            Phd_Utils.Strict_Similarities(totalUsers, INVUS, users, userMovies);     
+            //Phd_Utils.Strict_Similarities(totalUsers, RUS, users, userMovies);
+            //Phd_Utils.Strict_Similarities(totalUsers, NO3RUS, users, userMovies);
+            //Phd_Utils.Strict_Similarities(totalUsers, INVUS, users, userMovies);     
             strictTime=startTime-System.currentTimeMillis();
 
             //System.out.println("ccc");
@@ -368,20 +380,20 @@ try(FileWriter outExcel = new FileWriter( outFileResults )) {
             predTime1=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings 
 
             startTime=System.currentTimeMillis();                    //New Timer
-            Assign_Values(Predictions.Compute_Prediction(totalUsers, totalMovies, RUS, users, userMovies, 1, p),2);            
+            //Assign_Values(Predictions.Compute_Prediction(totalUsers, totalMovies, RUS, users, userMovies, 1, p),2);            
             predTime2=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings         
 
             startTime=System.currentTimeMillis();                    //New Timer
-            Assign_Values(Predictions.Compute_Prediction(totalUsers, totalMovies, NO3RUS, users, userMovies, 2, p),3);                 
+            //Assign_Values(Predictions.Compute_Prediction(totalUsers, totalMovies, NO3RUS, users, userMovies, 2, p),3);                 
             predTime3=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings         
 
             startTime=System.currentTimeMillis();                    //New Timer
-            Assign_Values(Predictions.Inverted_Prediction(totalUsers, totalMovies, INVUS, users, userMovies, p),4);     
+            //Assign_Values(Predictions.Inverted_Prediction(totalUsers, totalMovies, INVUS, users, userMovies, p),4);     
             //System.out.println(negAverMAE+" "+negAverPredictedValues);            
             predTime4=startTime-System.currentTimeMillis();    
         
             startTime=System.currentTimeMillis();                    //New Timer
-            Assign_Values(Predictions.Combined_Prediction(totalUsers, totalMovies, US, INVUS, COMBINE = new List[MAX_USERS], users, userMovies, p),5);
+            //Assign_Values(Predictions.Combined_Prediction(totalUsers, totalMovies, US, INVUS, COMBINE = new List[MAX_USERS], users, userMovies, p),5);
             predTime5=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings 
 
             totalTime=firstTime-System.currentTimeMillis(); 

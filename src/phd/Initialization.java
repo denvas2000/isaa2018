@@ -619,13 +619,13 @@ try {   //Read Files. Initiate tables
                 
                 //Create the main Users*Movies Table. Each cell holds the rating of a user to a
                 //specific movie.
-                userMovies[Running_User][MovieID]=new UserMovie(Running_User-1,MovieID-1,UserRating, RatingTimeStamp,0);
+                userMovies[Running_User][MovieID]=new UserMovie(Running_User,MovieID,UserRating, RatingTimeStamp,0);
 
             }//else if
             
         } // while (Line)
         
-        if (Running_User!=1)        //Handle (Create) last user 
+        if (Running_User!=0)        //Handle (Create) last user 
         {
             //Initialize new user
             users[Running_User]= new User(Running_User, Last_Movie, RatingsSum, RatingsNum, NO3_RatingsSum, NO3_RatingsNum, 
@@ -634,7 +634,7 @@ try {   //Read Files. Initiate tables
             usersRatingSet[Running_User].addAll(userRatingSet);
         } 
         
-        totalUsers=Running_User-1;
+        totalUsers=Running_User;
         
         } // try 
         catch (IOException e) {
@@ -642,7 +642,7 @@ try {   //Read Files. Initiate tables
             e.printStackTrace();
 
 	} //catch file error
-        int[] mainStats={totalUsers, totalMovies-1};
+        int[] mainStats={totalUsers, totalMovies};
         return mainStats;
         
 } //method Data_Initialisation_Amazon_Video_Games
