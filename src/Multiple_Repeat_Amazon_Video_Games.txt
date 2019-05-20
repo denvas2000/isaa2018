@@ -1,0 +1,16 @@
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -5256
+Calculate time to find Similarities (NN): -23384
+Calculate time to find Similarities (FN): -41720
+Calculate time to find Similarities (Dennis FN): -39234
+Sort Similarity arrays for all users: -671
+Strict Similarities Computational Time: -1037
+Calculate time to make Predictions (NN): -31
+Calculate time to make Predictions (FN): -54
+Calculate time to make Predictions (FN Dennis): -69
+Calculate time to make Predictions (Combined NN - FN Dennis): -178
+Total Time: -112108
+********************************************************
+********************************************************
+
