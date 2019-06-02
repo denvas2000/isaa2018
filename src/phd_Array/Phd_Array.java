@@ -32,6 +32,7 @@ ASSUMPTIONS     A:The USER IDs in the text file, starts from 0, and are increasi
                 
 BASE ON         The new proposed algorithm is compared against algorithms presented in paper:
                 "Pruning and Aging for User Histories in Collaborative Filtering", D.Margaris, C.Vassilakis
+TO BE DONE:     Να αλλάξω τον έλεγχο σε όλα τα similarities όπως στο Positive (131 line) ώστε να γίνεται ένας ελεγχος στο if
 */
 
 /*
@@ -230,7 +231,7 @@ String outFileTiming = new String();
 
 
 
-datasetSelection=3;
+datasetSelection=1;
 switch(datasetSelection) {
     case 1: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/01.Movielens_100k_old/01.Array/Movielens_100K_OLD_Sorted.txt";
             MAX_USERS=945;MAX_MOVIES=1690;

@@ -15,7 +15,7 @@ package phd_ArrayHashMap;
  * @author Dennis
  */
 
-import phd_Array.*;
+import phd_ArrayHashMap.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;

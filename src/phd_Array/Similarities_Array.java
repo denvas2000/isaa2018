@@ -93,7 +93,7 @@ double numeratorSimij, denominatorSimij;        //Numerator and Denominator of S
 double denominatorPartA, denominatorPartB;      //Denominator consists of two parts        
 double Similarity;
 double maxSimValue=Integer.MIN_VALUE, MinSimValue=Integer.MAX_VALUE;
-HashSet<Integer> commonRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
+HashSet<Integer> commonRatingSet = new HashSet<>();   //Set containg common rated items of two users
 HashSet<Integer> userRatingSet = new HashSet<>();   //Set containg for a specific user the Movies that has rated
 
 //System.out.println("Similarity"+simBase);
@@ -128,8 +128,8 @@ for (i=low;i<=upper;i++)            //This is the only change from original func
             for (int k: userRatingSet)
             {
                 //if (usersRatingSet[j].contains(k)) System.out.print(" "+k);                    ;
-                if (!(userMovies[i][k]==null) && !(userMovies[j][k]==null))
-                //if (!(userMovies[j][k]==null))                                //MAYBE FASTER
+                //if (!(userMovies[i][k]==null) && !(userMovies[j][k]==null))
+                if (!(userMovies[j][k]==null))                                //MAYBE FASTER
                 {
 
                     //System.out.print(" "+k);                    
@@ -265,8 +265,8 @@ for (i=0;i<=totalUsers-1;i++)
             for (int k: userRatingSet)
             {
                 //if (usersRatingSet[j].contains(k)) System.out.print(" "+k);                    ;
-                if (!(userMovies[i][k]==null) && !(userMovies[j][k]==null))
-                //if (!(userMovies[j][k]==null))                                //MAYBE FASTER
+                //if (!(userMovies[i][k]==null) && !(userMovies[j][k]==null))
+                if (!(userMovies[j][k]==null))                                //MAYBE FASTER
                 {
 
                     //System.out.print(" "+k);                    
@@ -593,7 +593,7 @@ for (i=0;i<=totalUsers-1;i++)
 {    
             
     averageUI=users[i].UserAverageRate();            
-    if ((users[i].getMaxTimeStamp()-users[i].getMinTimeStamp())>FN_100K_OLD.MIN_TIMESPACE)
+    if ((users[i].getMaxTimeStamp()-users[i].getMinTimeStamp())>Global_Vars.MIN_TIMESPACE)
        for (j=i+1;j<=totalUsers;j++)
        {
            
@@ -615,12 +615,12 @@ for (i=0;i<=totalUsers-1;i++)
                     
                     tempMovies++;
                     
-                    if (FN_100K_OLD.NEG_WEIGHT_TYPE==0) 
+                    if (Global_Vars.NEG_WEIGHT_TYPE==0) 
                         negWeight=1;
                     else
                         negWeight=Phd_Utils.Neg_Weight(userMovies[i][k].getRating(), userMovies[j][k].getRating());
                     
-                    if (FN_100K_OLD.WEIGHT_TYPE==1)
+                    if (Global_Vars.WEIGHT_TYPE==1)
                     {
                         tempWeight=(double)(userMovies[i][k].Time_Stamp-users[i].getMinTimeStamp())/(double)(users[i].getMaxTimeStamp()-users[i].getMinTimeStamp());
                         userMovies[i][k].setWeight(tempWeight);   

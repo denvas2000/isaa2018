@@ -594,7 +594,7 @@ for (i=0;i<=totalUsers-1;i++)
 {    
             
     averageUI=users[i].UserAverageRate();            
-    if ((users[i].getMaxTimeStamp()-users[i].getMinTimeStamp())>FN_100K_OLD.MIN_TIMESPACE)
+    if ((users[i].getMaxTimeStamp()-users[i].getMinTimeStamp())>Global_Vars.MIN_TIMESPACE)
        for (j=i+1;j<=totalUsers;j++)
        {
            
@@ -616,12 +616,12 @@ for (i=0;i<=totalUsers-1;i++)
                     
                     tempMovies++;
                     
-                    if (FN_100K_OLD.NEG_WEIGHT_TYPE==0) 
+                    if (Global_Vars.NEG_WEIGHT_TYPE==0) 
                         negWeight=1;
                     else
                         negWeight=Phd_Utils.Neg_Weight(userMovies[i][k].getRating(), userMovies[j][k].getRating());
                     
-                    if (FN_100K_OLD.WEIGHT_TYPE==1)
+                    if (Global_Vars.WEIGHT_TYPE==1)
                     {
                         tempWeight=(double)(userMovies[i][k].Time_Stamp-users[i].getMinTimeStamp())/(double)(users[i].getMaxTimeStamp()-users[i].getMinTimeStamp());
                         userMovies[i][k].setWeight(tempWeight);   

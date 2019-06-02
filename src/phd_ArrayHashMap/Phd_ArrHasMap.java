@@ -1,5 +1,5 @@
 /*
-Version 1.2
+Version 1.2.1
 Main features:  Reads a text file with limited users/ratings, compared to initial dataset (over10_movielens_simple.rar - MovieLens 100K simple)
                 Calculates all data needed to perform NN-algorithm CF (reault a)*
                 Calculates all data needed to perform FN-algorithm CF (reverse Pearson - tranform ratings) (result b)
@@ -18,6 +18,8 @@ Main features:  Reads a text file with limited users/ratings, compared to initia
                 Move some methods to sepa  rate files (Phd_Utils).
                 New Average Method for FN (inverted similarity)
                 Combined FN/NN
+                Table hollding raw data (userMovies) is transformed from n*n Array to n Array * n HashMap. This reduces size
+                need to hold raw data to the actual size of data.
 
 Next Version:   Refine simulations for more elaborate results
                 Testing algorithms on other than MovieLens 100K simple Data set. 
@@ -51,7 +53,7 @@ package phd_ArrayHashMap;
  */
  
 //import UserMovie;
-import phd_Array.*;
+import phd_ArrayHashMap.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -63,6 +65,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.HashMap;
 import java.util.HashSet;
 
 
@@ -133,7 +136,8 @@ static final int STRICT_SIMILARITY=1; //1=Only similar neighbors that rated last
                                       //0-All similar neighbors
 */
 static User[] users;        
-static UserMovie[][] userMovies;  //Store User Ratings
+//static UserMovie[][] userMovies;  //Store User Ratings
+static HashMap<Integer,UserMovie>[] userMovies = new HashMap<Integer,UserMovie>[012];
 static HashSet<Integer>[] usersRatingSet; //Array Set containg for each user the Movies that has rated
 /*
 static public int simNeighbors=0, revSimNeighbors=0, NO3RevSimNeighbors=0,
@@ -231,13 +235,14 @@ String outFileTiming = new String();
 
 
 
-datasetSelection=3;
+datasetSelection=1;
 switch(datasetSelection) {
     case 1: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/01.Movielens_100k_old/01.Array/Movielens_100K_OLD_Sorted.txt";
             MAX_USERS=945;MAX_MOVIES=1690;
             users=new User[MAX_USERS];
             usersRatingSet  = new HashSet[MAX_USERS]; 
-            userMovies = new UserMovie[MAX_USERS][MAX_MOVIES];
+//public HashMap<Integer,UserMovie>[] userMovies;
+            userMovies = new HashMap<Integer,UserMovie>[MAX_USERS];
             outFileResults="phd/Results_Array/Results_MovieLens100K_Old_Final.txt";
             outFileTiming="phd/Timings_Array/Time_MovieLens100K_Old_Final.txt";
             firstTime=System.currentTimeMillis();
@@ -329,16 +334,16 @@ try(FileWriter outExcel = new FileWriter( outFileResults )) {
             NO3TotalMAE=0.0;TotalMAE=0.0;                                    
 
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities_Array.Positive_Similarity(totalUsers, totalMovies, US = new List[MAX_USERS], users, userMovies, usersRatingSet, (double)l/100, n); 
+            Similarities_ArrHasMap.Positive_Similarity(totalUsers, totalMovies, US = new List[MAX_USERS], users, userMovies, usersRatingSet, (double)l/100, n); 
             simTime1=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities_Array.Compute_Similarity(totalUsers, totalMovies, RUS = new List[MAX_USERS], users, userMovies, usersRatingSet, 0, (double)-m/100, n);
+            Similarities_ArrHasMap.Compute_Similarity(totalUsers, totalMovies, RUS = new List[MAX_USERS], users, userMovies, usersRatingSet, 0, (double)-m/100, n);
             simTime2=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities_Array.Compute_Similarity(totalUsers, totalMovies, NO3RUS = new List[MAX_USERS], users, userMovies, usersRatingSet, 2, (double)-m/100, n);
+            Similarities_ArrHasMap.Compute_Similarity(totalUsers, totalMovies, NO3RUS = new List[MAX_USERS], users, userMovies, usersRatingSet, 2, (double)-m/100, n);
             simTime3=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities_Array.Inverted_Similarity(totalUsers, totalMovies, INVUS = new List[MAX_USERS], users, userMovies, usersRatingSet, (double)m/100, n, absMinTimeStamp, absMaxTimeStamp);
+            Similarities_ArrHasMap.Inverted_Similarity(totalUsers, totalMovies, INVUS = new List[MAX_USERS], users, userMovies, usersRatingSet, (double)m/100, n, absMinTimeStamp, absMaxTimeStamp);
             simTime4=startTime-System.currentTimeMillis();
 
             //System.out.println("aaa");

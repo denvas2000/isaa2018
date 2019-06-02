@@ -5,7 +5,7 @@
  */
 package phd_ArrayHashMap;
 
-import phd_Array.*;
+import phd_ArrayHashMap.*;
 import java.util.HashSet;
 import java.util.List;
 
@@ -56,11 +56,11 @@ this.commonMovies=commonMovies;
  public void run() {
 System.out.println(low + " "+upper+" "+simBase+" "+commonMovies+ "option " + option);
 switch(option) {
-    case 1: Similarities_Array.Positive_Similarity_Parallel(low,upper, totalUsers, userSim, users, userMovies, usersRatingSet, simBase, commonMovies);
+    case 1: Similarities_ArrHasMap.Positive_Similarity_Parallel(low,upper, totalUsers, userSim, users, userMovies, usersRatingSet, simBase, commonMovies);
             break;
-    case 2: Similarities_Array.Compute_Similarity_Parallel(low,upper, totalUsers, userSim, users, userMovies, usersRatingSet, similaritySign, simBase, commonMovies);
+    case 2: Similarities_ArrHasMap.Compute_Similarity_Parallel(low,upper, totalUsers, userSim, users, userMovies, usersRatingSet, similaritySign, simBase, commonMovies);
             break;
-    case 3: Similarities_Array.Inverted_Similarity_Parallel(low,upper, totalUsers, userSim, users, userMovies, usersRatingSet, simBase, commonMovies);          //Set new timer
+    case 3: Similarities_ArrHasMap.Inverted_Similarity_Parallel(low,upper, totalUsers, userSim, users, userMovies, usersRatingSet, simBase, commonMovies);          //Set new timer
             break;
 }//switch        
 } //run

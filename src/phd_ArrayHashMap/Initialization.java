@@ -12,7 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Scanner;
-import phd_Array.Global_Vars;
+import phd_ArrayHashMap.Global_Vars;
 
 
 /**
