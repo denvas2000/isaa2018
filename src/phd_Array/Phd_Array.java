@@ -238,8 +238,8 @@ switch(datasetSelection) {
             users=new User[MAX_USERS];
             usersRatingSet  = new HashSet[MAX_USERS]; 
             userMovies = new UserMovie[MAX_USERS][MAX_MOVIES];
-            outFileResults="phd/Results_Array/Results_MovieLens100K_Old_Final.txt";
-            outFileTiming="phd/Timings_Array/Time_MovieLens100K_Old_Final.txt";
+            outFileResults="phd/Results_Hash/Results_MovieLens100K_Old_Final.txt";
+            outFileTiming="phd/Timings_Has/Time_MovieLens100K_Old_Final.txt";
             firstTime=System.currentTimeMillis();
             startTime=System.currentTimeMillis();
             totals=Initialization.Data_Initialisation_100K_OLD(datasetFile, users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);

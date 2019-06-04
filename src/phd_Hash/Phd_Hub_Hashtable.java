@@ -1,5 +1,5 @@
 /*
-Version 1.2.1
+Version 2.0
 Main features:  Reads a text file with limited users/ratings, compared to initial dataset (over10_movielens_simple.rar - MovieLens 100K simple)
                 Calculates all data needed to perform NN-algorithm CF (reault a)*
                 Calculates all data needed to perform FN-algorithm CF (reverse Pearson - tranform ratings) (result b)
@@ -18,19 +18,17 @@ Main features:  Reads a text file with limited users/ratings, compared to initia
                 Move some methods to sepa  rate files (Phd_Utils).
                 New Average Method for FN (inverted similarity)
                 Combined FN/NN
-                Table hollding raw data (userMovies) is transformed from n*n Array to n Array * n HashMap. This reduces size
-                need to hold raw data to the actual size of data.
+                Improving ability to handle large data, through the use of hastables
+                One main class, for all data files. 
+                Time specific calculations, for improving time execution (see Classes for observations)                
 
 Next Version:   Refine simulations for more elaborate results
-                Testing algorithms on other than MovieLens 100K simple Data set. 
                 Introduce Parallel programming (multithreading)
                 Time specific calculations, for improving time execution
                 Produce more stats concerning data
-                Version 2, has to be more specific in terms of variables values during simulation. Final decisions have to be taken.
 
-ASSUMPTIONS     A:The USER IDs in the text file, starts from 0, and are increasing by step 1.
-                  e.g. The 1st user has ID=1, the 2nd user has ID=2.
-                B:The MOVIES IDs are like A. Each new movie is assigned a new ID, increasing by step 1.
+ASSUMPTIONS     All files are pre-proccessed so as userid and movieid having increasing values (by 1)
+                starting with value 0.
                 
 BASE ON         The new proposed algorithm is compared against algorithms presented in paper:
                 "Pruning and Aging for User Histories in Collaborative Filtering", D.Margaris, C.Vassilakis
@@ -42,8 +40,7 @@ THIS FILE COMPUTES KEEP-N
 
 */
 
-//2147483647
-package phd_ArrayHashMap;
+package phd;
 
 
 /*
@@ -53,7 +50,6 @@ package phd_ArrayHashMap;
  */
  
 //import UserMovie;
-import phd_ArrayHashMap.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -62,96 +58,25 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
-import java.util.Iterator;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.HashMap;
 
 
 /**
  *
  * @author Administrator
  */
-public class Phd_ArrHasMap extends Global_Vars{
+public class Phd_Hub_Hashtable extends Global_Vars{
         
+//Movielens 1M_Old
+static int MAX_USERS;                    //Maximum Users the program can handle
+static final int MAX_MOVIES=27000;       //Maximum Movies the program can handle
+static final int TOTAL_RATINGS=100000;
 
-static int MAX_USERS;       //Maximum Users the program can handle
-static int MAX_MOVIES;      //Maximum Movies the program can handle
-//static final int TOTAL_RATINGS=100001;
-
-/*
-static final int NO_PREDICTION=-10;    //"Prediction value" for items that cannot be predicted
-static final int MAX_RATING=5;
-
-static final int SIMILARITY_BASE_LIMIT=0;   //Compute Similarity: Greater/Lesser or equal than .. (>= or <=)
-static final int SIMILARITY_UPPER_LIMIT=100;
-static final int NEGATIVE_SIMILARITY_BASE_LIMIT=0;         //FOR SIMPLE CALC BEST 20
-static final int NEGATIVE_SIMILARITY_UPPER_LIMIT=100;
-//static final int NO3_NEGATIVE_SIMILARITY_BASE_LIMIT=0;
-//static final int NO3_NEGATIVE_SIMILARITY_UPPER_LIMIT=0;   
-
-static final int MIN_COMMON_MOVIES=0;       //Compute Similarity: Greater than .. (>)
-static final int MAX_COMMON_MOVIES=0;
-
-/*
-//Compute Prediction: >
-//Number of  Similar Neighbors, sorted by similarity (desc) (Min and Max Limits)
-static final int MIN_SIMILAR_NEIGH=0;      
-static final int MAX_SIMILAR_NEIGH=0;
-
-NOW IT HAS BEEN SUPERSEDED BY BEST_NEIGH. IN ALL PREDICTION FUNCTIONS IT IS SET TO 0;
-*/
-/*
-//Compute_Prediction:  Down and Upper Limit of  Neighbors that have rated lastmovieID, sorted by similarity (desc)
-//This limit defines, in any case, the maximum number of best neighbors that are taken into consideration
-//If STRICT_SIMILARITY=0 it MUST have a high value >1500. If STRICT_SIMILARITY=1 it may have the normal value explained above.
-static final int DOWN_BEST_NEIGH=150;         //HAS TO BE GREATER THAN ZERO (0). IT IS SET TO 150 TO INCLUDE ALL NEIGHBORS
-static final int UPPER_BEST_NEIGH=150; 
-
-//Initialization: <MAX_MOST_RECENT_RATINGS
-//Min and Max number of each user's ratings.
-//70% of users having < 105 (Movielens 100k simple)
-//When there is no need to exclude any user based on the number of his ratings, the numbes have to be hiiiiighhh >1500.
-//NOW ALL CALCULATIONS ARE BASED on MAX_MOST_RECENT_RATINGS
-static final int MIN_MOST_RECENT_RATINGS=150;          
-static final int MAX_MOST_RECENT_RATINGS=150;          
-
-// First and last rating must have a minimum time distance. 4 sec are the minimum.
-//Used inQ COMPUTE SIMILARITY: Greater than .. (>)
-static final int MIN_TIMESPACE=4;           
-
-//General Weight Types.
-//There are the following type of weights (used in computing similarity)
-//0=NO Weight, 1=Time Weight per user, 2=Time weight per whole population (OBSOLETE AFTER Ver 1.3. - Code Fixed)
-//THIS WEIGHT AFFECTS BOTH POSITIVE AND NEGATIVE SIMILARITIES
-static final int WEIGHT_TYPE=1;     
-
-//0=as WEIGHT_TYPE=1, but for Negative Similarity
-//1=NOT APPLIED ANY MORE
-static final int NEG_WEIGHT_TYPE=0; ////There are the following types of weights affecting ONLY NEGATIVE SIMILARITIES
-
-//Flag to Keep Only Neighbors that have rated last movie ID. Obsolete after Ver1.3 - Code Fixed. HAS TO BE DELETED IN NEXT VESRION.
-static final int STRICT_SIMILARITY=1; //1=Only similar neighbors that rated last movie 
-                                      //0-All similar neighbors
-*/
-static User[] users;        
-//static UserMovie[][] userMovies;  //Store User Ratings
-static HashMap<Integer,UserMovie>[] userMovies = new HashMap<Integer,UserMovie>[12];
-static HashSet<Integer>[] usersRatingSet; //Array Set containg for each user the Movies that has rated
-/*
-static public int simNeighbors=0, revSimNeighbors=0, NO3RevSimNeighbors=0,
-                  negAverSimNeighbors;       //The Number of user having similar/reverse similar users                
-static int positivePredictions, revPredictedValues, NO3RevPredictedValues,
-           negAverPredictedValues;    //The total number of actually predicted values
-static int combinedPredictions, combinedNeighbors;
-static double MAE=0.0, RevMAE=0.0, NO3RevMAE=0.0;                         //Mean Absolute Error of Prediction.
-static double TotalMAE=0.0, NO3TotalMAE=0.0, combinedMAE=0.0, negAverMAE;              //Mean Absolute Error of Combined Prediction.
-static int absMinTimeStamp=Integer.MAX_VALUE, absMaxTimeStamp=Integer.MIN_VALUE;
-
-
-*/
-
+static User[] users;                                              //Store User Details (see class declaration)
+static HashMap<CellCoor,UserMovie> userMovies;                  //Store User Ratings
+static HashSet<Integer>[] usersRatingSet;                         //Array Set containg for each user the Movies that has rated
 
 
 public static void Assign_Values(double[] values, int choice) {
@@ -177,11 +102,15 @@ else
    
 }
 
-}// Method Print_to_File
+}// Methid Print_to_File
 
 public static void main(String[] args) {
-        
-System.out.println("Hello World !" );
+
+//    
+// VARIABLES DEFINITIONS
+//
+
+System.out.println("Variables are being initialized.... Wait..." );
         
 
 UserSimilarity[][] User_Similarities = new UserSimilarity [MAX_USERS][MAX_USERS];
@@ -193,9 +122,11 @@ List<UserSimilarity>[] RUS;   //Array of list holding for each user the FN
 List<UserSimilarity>[] NO3RUS;    //Array of list holding for each user the FN
 List<UserSimilarity>[] INVUS;  
 List<UserSimilarity>[] COMBINE;  
-       
-int totalUsers=0;                                  //The number of users 
-int totalMovies=0;                                 //The number of unique movies in DB
+
+
+//These 2 vars can be estimated in advanced through real data and not through the code.
+int totalUsers;                                  //The number of users          
+int totalMovies;                                 //The number of unique movies in DB
 
 int newTotal,newrevtotal,no3newrevtotal;
 double Numerator_Sim_ij, Denominator_Sim_ij;        //Numerator and Denominator of Similarity (Pearson) function.
@@ -210,9 +141,9 @@ int NO3TotalPredictedValues;
 int temp_prediction;                                //values holding current (rev)predictions
 int temp_rev_prediction;
 int temp_no3_rev_prediction;
-     
-long firstTime=0, totalTime, startTime, initTime=0, simTime1, simTime2, simTime3, simTime4,  //Vars to hold execution times in different parts
-     sortTime, strictTime, predTime1, predTime2, predTime3, predTime4, predTime5;        //of the programs
+        
+// Time stamps to calculate execution times
+long firstTime, totalTime, startTime, initTime, simTime1, simTime2, simTime3, simTime4, sortTime, strictTime, predTime1, predTime2, predTime3, predTime4, predTime5;
         
 int i,j,k, l, m, n, o, p, q;
 int RevMode=0;
@@ -220,11 +151,62 @@ int aa=0;
 int[] totals = new int[2];
 
 int datasetSelection;
-String datasetFile=new String();
+String datasetFile = new String();
 String outFileResults = new String();
 String outFileTiming = new String();
 
 // PART A. INITIALISATION 
+
+//
+// Initialize Main Variables
+//
+
+datasetSelection=3;
+switch (datasetSelection) {
+    case 1: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/01.Movielens_100k_old/01.Array/Movielens_100K_OLD_Sorted.txt";
+            MAX_USERS= 945; 
+            users = new User[MAX_USERS];
+            usersRatingSet = new HashSet[MAX_USERS];
+            userMovies = new HashMap(134999);    //Realsize/0.75 for good performance
+                                                   //HAS to BE a PRIME or odd.I use 134999.
+            outFileResults="phd/Results_Hash/Results_MovieLens100K_Old_Final.txt"; 
+            outFileTiming ="phd/Timings_Hash/Time_MovieLens100K_Old_Final.txt"; 
+            break;
+    case 2: datasetFile="/home/denis/Documents/Datasets/02.Movielens_1M_Old/ratings_MovieLens_1M_Old.txt";
+            MAX_USERS= 6045; 
+            users = new User[MAX_USERS];
+            usersRatingSet = new HashSet[MAX_USERS];
+            userMovies = new HashMap(1335991);    //Realsize/0.75 for good performance
+                                                    //HAS to BE a PRIME or odd.I use 1335991.
+            outFileResults="src/phd/Results/Results_Movielens_1M_Old_Hash.txt"; 
+            outFileTiming ="src/phd/Timings/Timing_Movielens_1M_Old_Hash.txt"; 
+            //You have to set Heapsize to at least 4096MB (-Xms4096m)
+            break;
+    case 3: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/03.Amazon_Video_Games/ratings_Video_Games_Final.tab";
+            MAX_USERS= 8060; 
+            users = new User[MAX_USERS];
+            usersRatingSet = new HashSet[MAX_USERS];
+            userMovies = new HashMap(210011);    //Realsize/0.75 for good performance
+                                                    //HAS to BE a PRIME or odd.I use 1335991.
+            outFileResults="phd/Results_Hash/Results_Amazon_VG_HUB.txt"; 
+            outFileTiming ="phd/Timings_Hash/Time_Results_Amazon_VG_HUB.txt"; 
+            //You have to set Heapsize to at least 4096MB (-Xms4096m)
+            break;
+    case 4: datasetFile="/home/denis/Documents/Datasets/04.Amazon_Books/ratings_Books_Final.tab";
+            MAX_USERS= 294800; 
+            users = new User[MAX_USERS];
+            usersRatingSet = new HashSet[MAX_USERS];
+            userMovies = new HashMap(8681003);    //Realsize/0.75 for good performance
+                                                    //HAS to BE a PRIME or odd.I use 1335991.
+            outFileResults="src/phd/Results/Results_Amazon_Book_Hash_Hub.txt"; 
+            outFileTiming ="src/phd/Timings/Timing_Amazon_Book_Hash_Hub.txt"; 
+            //You have to set Heapsize to at least 4096MB (-Xms4096m)
+            break;
+} //switch
+
+System.out.println("Variables initialization finished. Program execution started..." );
+System.out.println("Data File reading started..." );
+
 //
 // -------- Start reading data file. All data are in memory (Tables) ----------- 
 //
@@ -233,58 +215,25 @@ String outFileTiming = new String();
 // Also returns two values: totalUsers and totalMovies 
 // Afterwards Inverse Data (for FN) are computed
 
+firstTime=System.currentTimeMillis();
+startTime=System.currentTimeMillis();
+totals=Initialization.Data_Initialisation_General(datasetFile, users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);
+initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
+System.out.println("Size after initialization:"+userMovies.size());
+//System.out.println(startTime);
+//System.out.println(initTime);
+//System.out.write("Initialization time (Read File, Fill in User, UserMovies tables): "+Long.toString(initTime));
 
+totalUsers=totals[0];totalMovies=totals[1];     
+//Phd_Utils.Print_Ratings(totalUsers, totalMovies, users, userMovies);
 
-datasetSelection=1;
-switch(datasetSelection) {
-    case 1: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/01.Movielens_100k_old/01.Array/Movielens_100K_OLD_Sorted.txt";
-            MAX_USERS=945;MAX_MOVIES=1690;
-            users=new User[MAX_USERS];
-            usersRatingSet  = new HashSet[MAX_USERS]; 
-//public HashMap<Integer,UserMovie>[] userMovies;
-            userMovies = new HashMap<Integer,UserMovie>[MAX_USERS];
-            outFileResults="phd/Results_Array/Results_MovieLens100K_Old_Final.txt";
-            outFileTiming="phd/Timings_Array/Time_MovieLens100K_Old_Final.txt";
-            firstTime=System.currentTimeMillis();
-            startTime=System.currentTimeMillis();
-            totals=Initialization.Data_Initialisation_100K_OLD(datasetFile, users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);
-            initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
-            totalUsers=totals[0];totalMovies=totals[1];            
-            break;
-    case 2: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/02.Movielens_1M_Old/01.Array/MovieLens_1M_Old.txt";
-            MAX_USERS=6045;MAX_MOVIES=3715;
-            users=new User[MAX_USERS];
-            usersRatingSet  = new HashSet[MAX_USERS]; 
-            userMovies = new UserMovie[MAX_USERS][MAX_MOVIES];
-            outFileResults="phd/Results_Array/Results_Movielens_1M_OLD_Final.txt";
-            outFileTiming="phd/Timings_Array/Time_Movielens_1M_OLD_Final.txt";
-            firstTime=System.currentTimeMillis();
-            startTime=System.currentTimeMillis();
-            totals=Initialization.Data_Initialisation_1M_OLD(datasetFile, users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);
-            initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
-            totalUsers=totals[0];totalMovies=totals[1];            
-            break;         
-    case 3: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/03.Amazon_Video_Games/ratings_Video_Games_Final.tab";
-            MAX_USERS=8060;MAX_MOVIES=26740;
-            users=new User[MAX_USERS];
-            usersRatingSet  = new HashSet[MAX_USERS]; 
-            userMovies = new UserMovie[MAX_USERS][MAX_MOVIES];
-            outFileResults="phd/Results_Array/Results_Amazon_VG_HUB.txt";
-            outFileTiming="phd/Timings_Array/Time_Results_Amazon_VG_HUB.txt";
-            firstTime=System.currentTimeMillis();
-            startTime=System.currentTimeMillis();
-            totals=Initialization.Data_Initialisation_Amazon_Video_Games(datasetFile, users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);
-            initTime=startTime-System.currentTimeMillis();  //Estimate Initialization Time
-            totalUsers=totals[0];totalMovies=totals[1];            
-            break;                
-}//switch
-
-
-Initialization.Compute_Inverse_Data(totalUsers, totalMovies, users, userMovies);
-System.out.println("totalUsers:"+totalUsers+" totalMovies:"+totalMovies); 
-
+Initialization.Compute_Inverse(totalUsers, totalMovies, users, userMovies);
+System.out.println("Users from 0 to:"+totalUsers+", Movies from 0 to:"+totalMovies); 
+//Phd_Utils.Print_Ratings(totalUsers, totalMovies, users, userMovies);
+//Phd_Utils.Print_UserItems(totalUsers, users, usersRatingSet);
 // -------- End reading data file. All data are in memory (Tables) ----------- 
 
+System.out.println("Data File reading finished..." );
         
         
 //PART B. MAIN PART I. COMPUTE SIMILARITIES - PART II.MAKE PREDICTIONS
@@ -324,7 +273,7 @@ try(FileWriter outExcel = new FileWriter( outFileResults )) {
             //Compute SIMILARITIES
             
             
-            System.out.println(" n:"+n+" l:"+l+" m:"+m);
+            System.out.println(" n:"+n+" l:"+l+" m:"+m+" Size:"+userMovies.size());
 
             simNeighbors=0; revSimNeighbors=0;NO3RevSimNeighbors=0;
             positivePredictions=0; revPredictedValues=0; NO3RevPredictedValues=0;    
@@ -332,24 +281,24 @@ try(FileWriter outExcel = new FileWriter( outFileResults )) {
 
             TotalPredictedValues=0;NO3TotalPredictedValues=0;            
             NO3TotalMAE=0.0;TotalMAE=0.0;                                    
-
+            
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities_ArrHasMap.Positive_Similarity(totalUsers, totalMovies, US = new List[MAX_USERS], users, userMovies, usersRatingSet, (double)l/100, n); 
+            Similarities.Positive_Similarity(totalUsers, totalMovies, US = new List[MAX_USERS], users, userMovies, usersRatingSet, (double)l/100, n); 
             simTime1=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities_ArrHasMap.Compute_Similarity(totalUsers, totalMovies, RUS = new List[MAX_USERS], users, userMovies, usersRatingSet, 0, (double)-m/100, n);
+            Similarities.Compute_Similarity(totalUsers, totalMovies, RUS = new List[MAX_USERS], users, userMovies, usersRatingSet, 0, (double)-m/100, n);
             simTime2=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities_ArrHasMap.Compute_Similarity(totalUsers, totalMovies, NO3RUS = new List[MAX_USERS], users, userMovies, usersRatingSet, 2, (double)-m/100, n);
+            Similarities.Compute_Similarity(totalUsers, totalMovies, NO3RUS = new List[MAX_USERS], users, userMovies, usersRatingSet, 2, (double)-m/100, n);
             simTime3=startTime-System.currentTimeMillis();
             startTime=System.currentTimeMillis();           //Set new timer
-            Similarities_ArrHasMap.Inverted_Similarity(totalUsers, totalMovies, INVUS = new List[MAX_USERS], users, userMovies, usersRatingSet, (double)m/100, n, absMinTimeStamp, absMaxTimeStamp);
+            Similarities.Inverted_Similarity(totalUsers, totalMovies, INVUS = new List[MAX_USERS], users, userMovies, usersRatingSet, (double)m/100, n);
             simTime4=startTime-System.currentTimeMillis();
-
             //System.out.println("aaa");
             //Similarities.Print_Similarities(totalUsers, INVUS);
-
+            //Similarities.Print_Similarities(totalUsers, US);
             //For each User there is a sorted array with all its NN/FN calculated
+
             startTime=System.currentTimeMillis();           //Set new timer
             
             for (i=0;i<=totalUsers;i++)
@@ -362,17 +311,15 @@ try(FileWriter outExcel = new FileWriter( outFileResults )) {
             //System.out.println("bbb");
             //Similarities.Print_Similarities(totalUsers, INVUS);
             //Similarities.Print_Similarities(totalUsers, US);
-            
             sortTime=startTime-System.currentTimeMillis();
-            
-            startTime=System.currentTimeMillis();
+
             //Keep only Neighbors that have rate LastMovieID
+            startTime=System.currentTimeMillis();
             Phd_Utils.Strict_Similarities(totalUsers, US, users, userMovies);
             Phd_Utils.Strict_Similarities(totalUsers, RUS, users, userMovies);
             Phd_Utils.Strict_Similarities(totalUsers, NO3RUS, users, userMovies);
             Phd_Utils.Strict_Similarities(totalUsers, INVUS, users, userMovies);     
             strictTime=startTime-System.currentTimeMillis();
-
             //System.out.println("ccc");
             //Similarities.Print_Similarities(totalUsers, INVUS);
             //Similarities.Print_Similarities(totalUsers, US);
@@ -395,7 +342,7 @@ try(FileWriter outExcel = new FileWriter( outFileResults )) {
 
             startTime=System.currentTimeMillis();                    //New Timer
             Assign_Values(Predictions.Inverted_Prediction(totalUsers, totalMovies, INVUS, users, userMovies, p),4);     
-            //System.out.println(negAverMAE+" "+negAverPredictedValues);            
+            System.out.println(negAverMAE+" "+negAverPredictedValues);            
             predTime4=startTime-System.currentTimeMillis();    
         
             startTime=System.currentTimeMillis();                    //New Timer
@@ -403,7 +350,8 @@ try(FileWriter outExcel = new FileWriter( outFileResults )) {
             predTime5=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings 
 
             totalTime=firstTime-System.currentTimeMillis(); 
-            //Testing the process so far 
+            
+        //Testing the process so far 
             aa++;    
 
             outExcel.write(aa+"\t"+(double)l/100+"\t"+(double)-m/100+"\t"+(double)-m/100+"\t"+n+"\t"+p);
@@ -451,7 +399,7 @@ try(FileWriter outExcel = new FileWriter( outFileResults )) {
         }    
             out.close();     //Close output file
             
-        } //try  
+        } //try    //try   
         catch (IOException iox) {
             //do stuff with exception
             iox.printStackTrace();
