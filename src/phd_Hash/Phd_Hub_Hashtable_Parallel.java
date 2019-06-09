@@ -224,16 +224,16 @@ String outFileTiming = new String();
 // Initialize Main Variables
 //
 
-datasetSelection=3;
+datasetSelection=1;
 switch (datasetSelection) {
-    case 1: datasetFile="/home/denis/Documents/Datasets/01.Movielens_100k_old/ratings_Movielens_100K_OLD_Sorted_Pure.txt";
+    case 1: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/01.Movielens_100k_old/02.Hash/Movielens_100K_OLD_Sorted_Pure.txt";
             MAX_USERS= 945; 
             users = new User[MAX_USERS];
             usersRatingSet = new HashSet[MAX_USERS];
             userMovies = new HashMap(134999);    //Realsize/0.75 for good performance
                                                    //HAS to BE a PRIME or odd.I use 134999.
-            outFileResults="src/phd/Results/Results_Movielens_100K_Old_Hash_Parallel.txt"; 
-            outFileTiming ="src/phd/Timings/Timing_Movielens_100K_Old_Hash_Parallel.txt"; 
+            outFileResults="phd/Results_Hash/Results_Movielens_100K_Old_Hash_Parallel.txt"; 
+            outFileTiming ="phd/Timings_Hash/Timing_Movielens_100K_Old_Hash_Parallel.txt"; 
             break;
     case 2: datasetFile="/home/denis/Documents/Datasets/02.Movielens_1M_Old/ratings_MovieLens_1M_Old.txt";
             MAX_USERS= 6045; 

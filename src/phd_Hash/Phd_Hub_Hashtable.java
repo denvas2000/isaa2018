@@ -161,9 +161,9 @@ String outFileTiming = new String();
 // Initialize Main Variables
 //
 
-datasetSelection=3;
+datasetSelection=1;
 switch (datasetSelection) {
-    case 1: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/01.Movielens_100k_old/01.Array/Movielens_100K_OLD_Sorted.txt";
+    case 1: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/01.Movielens_100k_old/02.Hash/Movielens_100K_OLD_Sorted_Pure.txt";
             MAX_USERS= 945; 
             users = new User[MAX_USERS];
             usersRatingSet = new HashSet[MAX_USERS];
@@ -172,14 +172,14 @@ switch (datasetSelection) {
             outFileResults="phd/Results_Hash/Results_MovieLens100K_Old_Final.txt"; 
             outFileTiming ="phd/Timings_Hash/Time_MovieLens100K_Old_Final.txt"; 
             break;
-    case 2: datasetFile="/home/denis/Documents/Datasets/02.Movielens_1M_Old/ratings_MovieLens_1M_Old.txt";
+    case 2: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/02.Movielens_1M_Old/01.Array/MovieLens_1M_Old.txt";
             MAX_USERS= 6045; 
             users = new User[MAX_USERS];
             usersRatingSet = new HashSet[MAX_USERS];
             userMovies = new HashMap(1335991);    //Realsize/0.75 for good performance
                                                     //HAS to BE a PRIME or odd.I use 1335991.
-            outFileResults="src/phd/Results/Results_Movielens_1M_Old_Hash.txt"; 
-            outFileTiming ="src/phd/Timings/Timing_Movielens_1M_Old_Hash.txt"; 
+            outFileResults="src/phd/Results_Hash/Results_Movielens_1M_Old_Hash.txt"; 
+            outFileTiming ="src/phd/Timings_Hash/Timing_Movielens_1M_Old_Hash.txt"; 
             //You have to set Heapsize to at least 4096MB (-Xms4096m)
             break;
     case 3: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/03.Amazon_Video_Games/ratings_Video_Games_Final.tab";
@@ -198,8 +198,8 @@ switch (datasetSelection) {
             usersRatingSet = new HashSet[MAX_USERS];
             userMovies = new HashMap(8681003);    //Realsize/0.75 for good performance
                                                     //HAS to BE a PRIME or odd.I use 1335991.
-            outFileResults="src/phd/Results/Results_Amazon_Book_Hash_Hub.txt"; 
-            outFileTiming ="src/phd/Timings/Timing_Amazon_Book_Hash_Hub.txt"; 
+            outFileResults="src/phd/Results_Hash/Results_Amazon_Book_Hash_Hub.txt"; 
+            outFileTiming ="src/phd/Timings_Hash/Timing_Amazon_Book_Hash_Hub.txt"; 
             //You have to set Heapsize to at least 4096MB (-Xms4096m)
             break;
 } //switch
