@@ -217,7 +217,7 @@ String outFileTiming = new String();
 //Phd_Utils.Print_UserRatings(totalUsers, totalMovies, users, userMovies);
 
 
-datasetSelection=4;
+datasetSelection=1;
 
 switch(datasetSelection) {
     case 1: datasetFile="/_PHD/02.Datasets_Original_and_Final_Files/01.Movielens_100k_old/01.Array/Movielens_100K_OLD_Sorted.txt";

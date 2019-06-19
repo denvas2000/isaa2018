@@ -1,0 +1,648 @@
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -967
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: -234
+Strict Similarities Computational Time: -140
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -5210
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -827
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: -94
+Strict Similarities Computational Time: -124
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -6255
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -406
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: -109
+Strict Similarities Computational Time: -109
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -6879
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -515
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: -94
+Strict Similarities Computational Time: -93
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -7581
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -453
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: -93
+Strict Similarities Computational Time: -110
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -8237
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -436
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: -94
+Strict Similarities Computational Time: -109
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -8876
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -390
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: -16
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -9282
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -390
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): -16
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -9688
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -468
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: -15
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -10171
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -421
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: -16
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -10608
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -437
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: -15
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -11060
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -390
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: -16
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -11466
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -437
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -11903
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -483
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -12386
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -453
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -12839
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -530
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -13369
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -484
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -13853
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -437
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -14290
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -546
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -14836
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -468
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -15304
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -436
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -15740
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -437
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -16177
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -453
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -16630
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -421
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -17051
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -405
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -17456
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -406
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -17862
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -390
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -18252
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -359
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -18611
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -343
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -18954
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -374
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -19328
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -359
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -19687
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -375
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -20062
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -405
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -20467
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -375
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -20842
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -390
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -21232
+********************************************************
+********************************************************
+
+Max Similarity Value: 0.0 Min Similarity Value:0.0
+
+Initialization time (Read File, Fill in User, UserMovies tables): -3837
+Calculate time to find Similarities (NN): -374
+Calculate time to find Similarities (FN): 0
+Calculate time to find Similarities (NO3 FN): 0
+Calculate time to find Similarities (Dennis FN): 0
+Sort Similarity arrays for all users: 0
+Strict Similarities Computational Time: 0
+Calculate time to make Predictions (NN): 0
+Calculate time to make Predictions (FN): 0
+Calculate time to make Predictions (NO3 FN): 0
+Calculate time to make Predictions (FN Dennis): 0
+Calculate time to make Predictions (Combined NN - FN Dennis): 0
+Total Time: -21606
+********************************************************
+********************************************************
+

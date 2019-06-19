@@ -177,10 +177,8 @@ for (i=0;i<=totalUsers-1;i++)
                 cell0.user=i;cell0.movie=k;
                 tempUM1=userMovies.get(cell0);
                 cell1.user=j;cell1.movie=k;
-                //System.out.println("Cells:"+cell0.user+" "+cell0.movie+" "+i+" "+j+" "+k);
-                //if (userMovies.containsKey(cell0) && userMovies.containsKey(cell1))
-                if (userMovies.containsKey(cell1))
-                {
+                //if (userMovies.containsKey(cell1))                                          //ΙΣΩΣ ΜΠΟΡΕΙ ΝΑ ΦΥΓΕΙ?????
+                //{
                     //System.out.println("aek1");
 
                     tempUM2=userMovies.get(cell1);
@@ -218,20 +216,12 @@ for (i=0;i<=totalUsers-1;i++)
                     }
                     
                     
-                    /*numeratorSimij += (userMovies.get(cell0).getRating()-averageUI)*(userMovies.get(cell1).getRating()-averageUJ)*userMovies.get(cell0).getWeight()*userMovies.get(cell1).getWeight();
-                    denominatorPartA += (userMovies.get(cell0).getRating()-averageUI)*(userMovies.get(cell0).getRating()-averageUI);
-                    denominatorPartB += (userMovies.get(cell1).getRating()-averageUJ)*(userMovies.get(cell1).getRating()-averageUJ);*/
-                    
-                    /*numeratorSimij += (userMovies.get(cell0).Rating-averageUI)*(userMovies.get(cell1).Rating-averageUJ)*userMovies.get(cell0).Weight*userMovies.get(cell1).Weight;
-                    denominatorPartA += (userMovies.get(cell0).Rating-averageUI)*(userMovies.get(cell0).Rating-averageUI);
-                    denominatorPartB += (userMovies.get(cell1).Rating-averageUJ)*(userMovies.get(cell1).Rating-averageUJ);*/
-
                     numeratorSimij += (tempUM1.Rating-averageUI)*(tempUM2.Rating-averageUJ)*tempUM1.Weight*tempUM2.Weight;
                     
                     denominatorPartA += (tempUM1.Rating-averageUI)*(tempUM1.Rating-averageUI);
                     denominatorPartB += (tempUM2.Rating-averageUJ)*(tempUM2.Rating-averageUJ);
 
-                }//if
+                //}//if
                   
             }//for k
             
@@ -332,15 +322,13 @@ for (i=low;i<=upper;i++)
                 cell0.user=i;cell0.movie=k;
                 tempUM1=userMovies.get(cell0);
                 cell1.user=j;cell1.movie=k;
-                //System.out.println("Cells:"+cell0.user+" "+cell0.movie+" "+i+" "+j+" "+k);
-                //if (userMovies.containsKey(cell0) && userMovies.containsKey(cell1))
+
                 //if (userMovies.containsKey(cell1))
                 tempUM2=userMovies.get(cell1);
-                if (!(tempUM2==null))
-                {
+                //if (!(tempUM2==null))
+                //{
                     //System.out.println("aek1");
 
-                    //tempUM2=userMovies.get(cell1); 
                     tempMovies++;
                     if (Global_Vars.WEIGHT_TYPE==1)
                     {
@@ -355,7 +343,6 @@ for (i=low;i<=upper;i++)
                         
                         //-System.out.println(j+" "+k+" "+tempWeight+"<->");
                         //System.out.println(userMovies.get(cell0).Time_Stamp+" "+users[i].getMinTimeStamp()+" "+users[i].getMaxTimeStamp());
-                        //System.out.println(userMovies.get(cell1).Time_Stamp+" "+users[j].getMinTimeStamp()+" "+users[j].getMaxTimeStamp());
                     }
                     else
                     {
@@ -370,8 +357,6 @@ for (i=low;i<=upper;i++)
                     denominatorPartA += (tempUM1.Rating-averageUI)*(tempUM1.Rating-averageUI);
                     denominatorPartB += (tempUM2.Rating-averageUJ)*(tempUM2.Rating-averageUJ);
 
-                }//if
-                  
             }//for k
             
             commonRatingSet.clear();
@@ -471,10 +456,8 @@ for (i=0;i<=totalUsers-1;i++)
                 tempUM1=userMovies.get(cell0);                
                 cell1.user=j;cell1.movie=k;
 
-                
-                //if (!(userMovies.get(cell0)==null) && !(userMovies.get(cell1)==null))
-                if (!(userMovies.get(cell1)==null))
-                {
+                //if (!(userMovies.get(cell1)==null))
+                //{
                     
                     tempUM2=userMovies.get(cell1);                    
                     tempMovies++;
@@ -500,9 +483,7 @@ for (i=0;i<=totalUsers-1;i++)
                     numeratorSimij += (userMovies.get(cell0).invRating-averageUI)*(userMovies.get(cell1).invRating-averageUJ)*userMovies.get(cell0).getWeight()*userMovies.get(cell1).getWeight();
                     denominatorPartA += (userMovies.get(cell0).invRating-averageUI)*(userMovies.get(cell0).invRating-averageUI);
                     denominatorPartB += (userMovies.get(cell1).invRating-averageUJ)*(userMovies.get(cell1).invRating-averageUJ);
-
-                }
-                  
+  
             }//for k
                 
             denominatorSimij= denominatorPartA * denominatorPartB;
@@ -592,10 +573,8 @@ for (i=low;i<=upper;i++)
                 tempUM1=userMovies.get(cell0);                
                 cell1.user=j;cell1.movie=k;
 
-                
-                //if (!(userMovies.get(cell0)==null) && !(userMovies.get(cell1)==null))
-                if (!(userMovies.get(cell1)==null))
-                {
+                //if (!(userMovies.get(cell1)==null))
+                //{
                     
                     tempUM2=userMovies.get(cell1);                    
                     tempMovies++;
@@ -622,8 +601,6 @@ for (i=low;i<=upper;i++)
                     denominatorPartA += (userMovies.get(cell0).invRating-averageUI)*(userMovies.get(cell0).invRating-averageUI);
                     denominatorPartB += (userMovies.get(cell1).invRating-averageUJ)*(userMovies.get(cell1).invRating-averageUJ);
 
-                }
-                  
             }//for k
                 
             denominatorSimij= denominatorPartA * denominatorPartB;
@@ -724,9 +701,8 @@ for (i=0;i<=totalUsers-1;i++)
                 tempUM1=userMovies.get(cell0);
                 cell1.user=j;cell1.movie=k;
 
-                //if (!(userMovies.get(cell0)==null) && !(userMovies.get(cell1)==null))
-                if (userMovies.containsKey(cell1))
-                {
+               // if (userMovies.containsKey(cell1))
+                //{
                     //System.out.println("OK");
                     tempUM2=userMovies.get(cell1);
                     tempMovies++;
@@ -772,7 +748,6 @@ for (i=0;i<=totalUsers-1;i++)
                         NO3_denominatorPartA += (tempUM1.getRating()-averageUI)*(tempUM1.getRating()-averageUI);
                         NO3_denominatorPartB += (tempUM2.getRating()-averageUJ)*(tempUM2.getRating()-averageUJ);
                     }
-                }
                   
             }//for k
 
@@ -897,8 +872,8 @@ for (i=low;i<=upper;i++)
                 cell1.user=j;cell1.movie=k;
 
                 //if (!(userMovies.get(cell0)==null) && !(userMovies.get(cell1)==null))
-                if (userMovies.containsKey(cell1))
-                {
+                //if (userMovies.containsKey(cell1))
+                //{
                     //System.out.println("OK");
                     tempUM2=userMovies.get(cell1);
                     tempMovies++;
@@ -944,7 +919,7 @@ for (i=low;i<=upper;i++)
                         NO3_denominatorPartA += (tempUM1.getRating()-averageUI)*(tempUM1.getRating()-averageUI);
                         NO3_denominatorPartB += (tempUM2.getRating()-averageUJ)*(tempUM2.getRating()-averageUJ);
                     }
-                }
+                //}
                   
             }//for k
 

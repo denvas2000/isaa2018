@@ -20,7 +20,8 @@ Main features:  Reads a text file with limited users/ratings, compared to initia
                 Combined FN/NN
                 Improving ability to handle large data, through the use of hastables
                 One main class, for all data files. 
-                Time specific calculations, for improving time execution (see Classes for observations)                
+                Time specific calculations, for improving time execution (see Classes for observations)    
+                Improved timing, at similarity section.
 
 Next Version:   Refine simulations for more elaborate results
                 Introduce Parallel programming (multithreading)
