@@ -227,8 +227,8 @@ switch(datasetSelection) {
             userMovies = new UserMovie[MAX_USERS][MAX_MOVIES];
             US= new List[MAX_USERS];RUS= new List[MAX_USERS];NO3RUS= new List[MAX_USERS];
             INVUS= new List[MAX_USERS]; //COMBINE= new List[MAX_USERS];
-            outFileResults="phd/Results_Array/Results_MovieLens100K_Old_Final_Ver1_5_HUB_Parallel.txt";
-            outFileTiming="phd/Timings_Array/Time_MovieLens100K_Old_Final_Ver1_5_HUB_Parallel.txt";
+            outFileResults="phd/Results_Array/Results_MovieLens100K_Old_Final_Ver1_5_HUB_Parallel_test.txt";
+            outFileTiming="phd/Timings_Array/Time_MovieLens100K_Old_Final_Ver1_5_HUB_Parallel_test.txt";
             firstTime=System.currentTimeMillis();
             startTime=System.currentTimeMillis();
             totals=Initialization.Data_Initialisation_100K_OLD(datasetFile, users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);
@@ -273,7 +273,7 @@ switch(datasetSelection) {
             US= new List[MAX_USERS];RUS= new List[MAX_USERS];NO3RUS= new List[MAX_USERS];
             INVUS= new List[MAX_USERS]; //COMBINE= new List[MAX_USERS];
             outFileResults="phd/Results_Array/Results_Amazon_Books_Parallel.txt";
-            outFileTiming="phd/Timings_Array/Time_Results_Books_VG_Parallel.txt";
+            outFileTiming="phd/Timings_Array/Time_Results_Books_Parallel.txt";
             firstTime=System.currentTimeMillis();
             startTime=System.currentTimeMillis();
             totals=Initialization.Data_Initialisation_Amazon_Video_Games(datasetFile, users, userMovies, usersRatingSet, absMinTimeStamp, absMaxTimeStamp);
@@ -382,7 +382,7 @@ try(FileWriter outExcel = new FileWriter( outFileResults )) {
 
 
             startTime=System.currentTimeMillis();                    //New Timer
-            //Assign_Values(Predictions.Positive_Prediction(totalUsers, totalMovies, US, users, userMovies, p),1);
+            Assign_Values(Predictions.Positive_Prediction(totalUsers, totalMovies, US, users, userMovies, p),1);
             predTime1=startTime-System.currentTimeMillis();                          //Time for the calculation of Predicted ratings 
             //Predictions.Print_Predictions(totalUsers, users);
             startTime=System.currentTimeMillis();                    //New Timer
